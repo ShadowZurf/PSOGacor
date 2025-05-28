@@ -15,19 +15,9 @@ Fitur yang ada pada ITS OK terbagi menjadi 2 yaitu untuk mahasiswa (pelanggan) d
     - Melayani Konsultasi Offline: Psikolog menerima mahasiswa untuk sesi tatap muka di SHCC ITS.
     - Melayani Konsultasi Online: Psikolog dapat memberikan layanan konsultasi melalui video call sesuai jadwal yang tersedia.
  
-## Software Critical Design Review Document
--  [Critical Design Review](https://drive.google.com/file/d/14RjEyKniHxxy45HWEVFumXGOACJw_Ged/view?usp=sharing) - Dokumentasi pengembangan perangkat lunak ITS - OK | Kelompok 3
-
-## Panduan Kerja Kelompok
-
-- [Developer Guide ITS-OK](https://docs.google.com/document/d/1lO-9_ct93S7_4YcGZr-u6OrPP089U6FhWn4IYKcEvNk/edit?tab=t.yg98af1d6vgq) - Panduan untuk kerja sama dalam pengembangan project ini
-- [Figma ITS - OK](https://www.figma.com/design/479BainNxpqY76oOU37VLs/Main-Website-Design-%7C-ITS---OK?node-id=324-6550&p=f&m=dev) - Panduan desain interface ITS - OK
-
 ## Anggota Kelompok
-- Krisna Setia Himawhan (5026221017)
 - Khalid Wildan Lazuardi (5026221023)
 - Ahmad Nabil (5026221027)
 - Mochammad Afandi Wirawan (5026221127)
-- R. Farel Danendra Hendrawan Putra (5026211169)
 - Arya Putra Tsabitah Firjatulloh (5026221172)
 

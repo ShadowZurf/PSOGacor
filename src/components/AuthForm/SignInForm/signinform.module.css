@@ -1,0 +1,26 @@
+.buttonSignIn{
+    background-color: var(--yellow-primary);
+    border-color: var(--yellow-primary);
+    color:black;
+    font-weight: bold;
+    border-radius: 60px;   
+}
+.buttonSignIn:hover{
+    background-color: #ffbe33;
+    border-color: #ffbe33;
+    color:black;
+    border-radius: 60px;
+}
+.buttonSignIn:active{
+    background-color: var(--yellow-primary) !important;
+    border-color: var(--yellow-primary) !important;
+    color:black !important;
+    border-radius: 60px;
+}
+.buttonSignUp{
+    background-color: white;
+    border-color: var(--blue-primary);
+    color:var(--blue-primary);
+    font-weight: bold;
+    border-radius: 60px;   
+}

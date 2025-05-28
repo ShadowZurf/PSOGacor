@@ -21,7 +21,7 @@ export default function KonsultasiOfflineMahasiswa() {
   const [orderData] = useState<SesiData[]>([
     {
       id: "1",
-      namaPemesan: "SHCC ITS",
+      namaPemesan: "SHCC ITSSS",
       tanggal: "24 Mei 2025",
       sesi: "Sesi 1 (08.00 - 09.30)",
       status: "terdaftar",

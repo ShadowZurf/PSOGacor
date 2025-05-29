@@ -7,6 +7,8 @@ import { ArrowLeft, XCircle } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
 import SuccessOrder from "@/components/SuccessOrder";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 export default function FormKonsultasiOffline() {
   const router = useRouter();
@@ -51,12 +53,37 @@ export default function FormKonsultasiOffline() {
     router.push("/mahasiswa/konsultasioffline");
   };
 
-  const handleSubmit = () => {
-    console.log({ ...formData, sesi: selectedSesi });
-    setShowSuccess(true);
-    setTimeout(() => {
-      router.push("/mahasiswa/konsultasioffline");
-    }, 2000);
+  const handleSubmit = async () => {
+    if (!selectedSesi || !formData.tanggal) {
+      setAlertMessage("Pastikan memilih tanggal dan sesi terlebih dahulu.");
+      setShowAlert(true);
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "konsultasi_offline"), {
+        nama: formData.nama,
+        nrp: formData.nrp,
+        jurusan: formData.jurusan,
+        email: formData.email,
+        tanggal: formData.tanggal,
+        sesi: selectedSesi,
+        keluhan: formData.keluhan,
+        status: "Terdaftar",
+        tanggalPengajuan: Timestamp.now(),
+        namaPsikolog: "SHCC ITS",
+        lokasi: "Gedung PK2/SAC lantai 2 dekat kantin pusat",
+      });
+
+      setShowSuccess(true);
+      setTimeout(() => {
+        router.push("/mahasiswa/konsultasioffline");
+      }, 2000);
+    } catch (error) {
+      console.error("Gagal menyimpan ke Firestore:", error);
+      setAlertMessage("Gagal menyimpan data. Silakan coba lagi.");
+      setShowAlert(true);
+    }
   };
 
   const sesiList = ["09.00 – 10.30", "11.00 – 12.30", "13.30 – 15.00"];

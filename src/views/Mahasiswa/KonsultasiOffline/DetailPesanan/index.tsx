@@ -1,15 +1,17 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import { Button } from "react-bootstrap";
-import styles from "./detail-konsuloff.module.css";
 import Head from "next/head";
 import DashboardLayout from "@/layouts/dashboard";
+import styles from "./detail-konsuloff.module.css";
 import { ArrowLeft, CheckCircle } from "lucide-react";
-import { useRouter } from "next/router";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface StatusConfig {
   [key: string]: {
     color: string;
     backgroundColor: string;
-    icon: string;
   };
 }
 
@@ -17,49 +19,79 @@ const statusConfig: StatusConfig = {
   Terdaftar: {
     color: "green",
     backgroundColor: "#d1fae5",
-    icon: "check",
   },
 };
 
-// Simulasi data dummy
-const dummyData = [
-  {
-    id: "1",
-    namaPsikolog: "SHCC ITS",
-    tanggalPengajuan: "21 Mei 2025 14:15:00",
-    jadwalKonsultasi: "Kamis, 29 Mei 2025",
-    sesiKonsultasi: "13.00 – 14.30",
-    lokasi: "Gedung PK2/SAC lantai 2 dekat kantin pusat",
-    keluhan:
-      "Cemas berlebihan menghadapi tugas akhir, sulit tidur, dan tekanan dari keluarga.",
-    status: "Terdaftar",
-  },
-];
+interface PesananData {
+  namaPsikolog: string;
+  tanggalPengajuan: string;
+  tanggal: string;
+  sesi: string;
+  lokasi: string;
+  keluhan: string;
+  status: string;
+}
 
-export default function DetailPesananOfflineView({ id }: { id: string }) {
+export default function DetailPesananOfflineView() {
   const router = useRouter();
-  const pesanan = dummyData.find((item) => item.id === id);
+  const { id } = router.query;
 
-  if (!pesanan) {
-    return <div style={{ padding: "2rem" }}>Pesanan tidak ditemukan.</div>;
-  }
+  const [pesanan, setPesanan] = useState<PesananData | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  const handleBack = () => router.back();
+
+  useEffect(() => {
+    if (!id) return;
+
+    const fetchData = async () => {
+      try {
+        const docRef = doc(db, "konsultasi_offline", String(id));
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          setPesanan({
+            namaPsikolog: data.namaPsikolog || "-",
+            tanggalPengajuan: data.tanggalPengajuan?.toDate().toLocaleString() || "-",
+            tanggal: data.tanggal || "-",
+            sesi: data.sesi || "-",
+            lokasi: data.lokasi || "-",
+            keluhan: data.keluhan || "-",
+            status: data.status || "Terdaftar",
+          });
+        } else {
+          setPesanan(null);
+        }
+      } catch (err) {
+        console.error("Gagal mengambil data detail:", err);
+        setPesanan(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [id]);
 
   const getStatusIcon = (status: string) => {
-    const config = statusConfig[status];
-    if (!config) return null;
-
-    return <CheckCircle size={16} />;
+    switch (status) {
+      case "Terdaftar":
+        return <CheckCircle size={16} />;
+      // bisa tambahkan status lain nanti
+      default:
+        return null;
+    }
   };
 
-  const handleBack = () => {
-    router.back();
-  };
+  if (loading) return <div style={{ padding: "2rem" }}>Memuat detail...</div>;
+  if (!pesanan) return <div style={{ padding: "2rem" }}>Pesanan tidak ditemukan.</div>;
 
   return (
     <>
       <Head>
         <title>Konsultasi Offline | ITS-OK</title>
-        <meta name="description" content="Halaman konsultasi offline mahasiswa" />
+        <meta name="description" content="Halaman detail konsultasi offline mahasiswa" />
         <link rel="icon" href="/logo/favicon.png" />
       </Head>
       <DashboardLayout>
@@ -69,13 +101,11 @@ export default function DetailPesananOfflineView({ id }: { id: string }) {
               <div className={styles.headerContent}>
                 <h2 className={styles.pageTitle}>Detail Konsultasi Offline</h2>
                 <Button onClick={handleBack} className={styles.backButton}>
-                  <ArrowLeft size={20} />
-                  Kembali
+                  <ArrowLeft size={20} /> Kembali
                 </Button>
               </div>
             </section>
 
-            {/* Kartu Utama Detail */}
             <div className={styles.detailContainer}>
               <div className={styles.consultationHeader}>
                 <h3 className={styles.consultationTitle}>
@@ -104,36 +134,28 @@ export default function DetailPesananOfflineView({ id }: { id: string }) {
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>NAMA PSIKOLOG</span>
-                    <span className={styles.detailValue}>
-                      {pesanan.namaPsikolog}
-                    </span>
+                    <span className={styles.detailValue}>{pesanan.namaPsikolog}</span>
                   </div>
                 </div>
 
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>JADWAL KONSULTASI</span>
-                    <span className={styles.detailValue}>
-                      {pesanan.jadwalKonsultasi}
-                    </span>
+                    <span className={styles.detailValue}>{pesanan.tanggal}</span>
                   </div>
                 </div>
 
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>SESI KONSULTASI</span>
-                    <span className={styles.detailValue}>
-                      {pesanan.sesiKonsultasi}
-                    </span>
+                    <span className={styles.detailValue}>{pesanan.sesi}</span>
                   </div>
                 </div>
 
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>LOKASI KONSULTASI</span>
-                    <span className={styles.detailValue}>
-                      {pesanan.lokasi}
-                    </span>
+                    <span className={styles.detailValue}>{pesanan.lokasi}</span>
                   </div>
                 </div>
 

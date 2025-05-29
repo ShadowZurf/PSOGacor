@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./konsultasi-offline.module.css";
-import { Video, CheckCircle } from "lucide-react";
+import { Video, CheckCircle, Trash2 } from "lucide-react";
+import { doc, deleteDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
 interface SesiData {
   id: string;
@@ -37,6 +39,8 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
     }
   };
 
+const [hoveredId, setHoveredId] = useState<string | null>(null);
+
   if (data.length === 0) {
     return (
       <div className={styles.wrapper}>
@@ -56,11 +60,23 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
         const statusConfig = getStatusConfig(sesi.status);
         const StatusIcon = statusConfig.icon;
 
+        const handleDelete = async (
+          e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+        ) => {
+          e.preventDefault(); // prevent link click
+          if (confirm("Yakin ingin menghapus pesanan ini?")) {
+            await deleteDoc(doc(db, "konsultasi_offline", sesi.id));
+            location.reload(); // refresh list
+          }
+        };
+
         return (
           <Link
             key={sesi.id}
             href={`${detailLinkPrefix}${sesi.id}`}
             className={styles.cardLink}
+            onMouseEnter={() => setHoveredId(sesi.id)}
+            onMouseLeave={() => setHoveredId(null)}
           >
             <div className={styles.card}>
               <div className={styles.iconContainer}>
@@ -68,9 +84,7 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
               </div>
 
               <div className={styles.content}>
-                <h3 className={styles.title}>
-                  Konsultasi Online : {sesi.namaPemesan}
-                </h3>
+                <h3 className={styles.title}>Konsultasi Offline</h3>
                 <p className={styles.dateTime}>
                   {sesi.tanggal} | {sesi.sesi}
                 </p>
@@ -79,6 +93,16 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
                   {statusConfig.text}
                 </div>
               </div>
+
+              {hoveredId === sesi.id && (
+                <button
+                  className={styles.deleteButton}
+                  onClick={handleDelete}
+                  title="Hapus"
+                >
+                  <Trash2 size={18} />
+                </button>
+              )}
             </div>
           </Link>
         );

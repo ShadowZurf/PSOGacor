@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Head from "next/head";
 import DashboardLayout from "@/layouts/dashboard";
 import styles from "./konsuloff-mhs.module.css";
 import { Button } from "react-bootstrap";
 import { Plus } from "lucide-react";
 import NoOrderMahasiswa from "@/components/NoOrder/Mahasiswa";
-import OrderMahasiswa from "@/components/Order/KonsultasiOffline"; // Pastikan komponen ini ada
+import OrderMahasiswa from "@/components/Order/KonsultasiOffline";
 import PaginationComponent from "@/components/Pagination/Mahasiswa";
-import { useState } from "react";
-import { useRouter } from "next/router";
+
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 interface SesiData {
   id: string;
@@ -18,51 +21,39 @@ interface SesiData {
 }
 
 export default function KonsultasiOfflineMahasiswa() {
-  const [orderData] = useState<SesiData[]>([
-    {
-      id: "1",
-      namaPemesan: "SHCC ITSSS",
-      tanggal: "24 Mei 2025",
-      sesi: "Sesi 1 (08.00 - 09.30)",
-      status: "terdaftar",
-    },
-    {
-      id: "2",
-      namaPemesan: "SHCC ITS",
-      tanggal: "25 Mei 2025",
-      sesi: "Sesi 2 (10.00 - 11.30)",
-      status: "terdaftar",
-    },
-    {
-      id: "3",
-      namaPemesan: "SHCC ITS",
-      tanggal: "26 Mei 2025",
-      sesi: "Sesi 3 (13.00 - 14.30)",
-      status: "terdaftar",
-    },
-    {
-      id: "4",
-      namaPemesan: "SHCC ITS",
-      tanggal: "27 Mei 2025",
-      sesi: "Sesi 1 (08.00 - 09.30)",
-      status: "terdaftar",
-    },
-    {
-      id: "5",
-      namaPemesan: "SHCC ITS",
-      tanggal: "28 Mei 2025",
-      sesi: "Sesi 2 (10.00 - 11.30)",
-      status: "terdaftar",
-    },
-  ]);
-
+  const [orderData, setOrderData] = useState<SesiData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 4;
-  const totalPages = Math.ceil(orderData.length / itemsPerPage);
-  const [isLoading] = useState(false);
 
   const router = useRouter();
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const snapshot = await getDocs(collection(db, "konsultasi_offline"));
+        const result: SesiData[] = snapshot.docs.map((doc) => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            namaPemesan: "Konsultasi Offline",
+            tanggal: data.tanggal || "-",
+            sesi: data.sesi || "-",
+            status: "terdaftar" as const,
+          };
+        });
+        setOrderData(result);
+      } catch (err) {
+        console.error("Gagal mengambil data:", err);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const totalPages = Math.ceil(orderData.length / itemsPerPage);
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
@@ -94,7 +85,9 @@ export default function KonsultasiOfflineMahasiswa() {
             </Button>
           </div>
 
-          {orderData.length === 0 ? (
+          {isLoading ? (
+            <p style={{ padding: "1rem" }}>Memuat data...</p>
+          ) : orderData.length === 0 ? (
             <NoOrderMahasiswa />
           ) : (
             <>

@@ -44,6 +44,8 @@ export default function FormKonsultasiOffline() {
     if (!isTuesdayOrThursday(selectedDate)) {
       setAlertMessage("Mohon pilih hari Selasa atau Kamis saja");
       setShowAlert(true);
+      // Kosongkan tanggal agar user tidak bisa submit dengan tanggal salah
+      setFormData((prev) => ({ ...prev, tanggal: "" }));
       return;
     }
     setFormData((prev) => ({ ...prev, tanggal: selectedDate }));
@@ -53,21 +55,28 @@ export default function FormKonsultasiOffline() {
     router.push("/mahasiswa/konsultasioffline");
   };
 
-   const handleSubmit = async () => {
-    if (!selectedSesi || !formData.tanggal) {
-      setAlertMessage("Pastikan memilih tanggal dan sesi terlebih dahulu.");
+  const handleSubmit = async () => {
+    // Validasi semua field yang wajib diisi
+    if (
+      !formData.nama.trim() || // .trim() untuk menghapus spasi di awal/akhir
+      !formData.nrp.trim() ||
+      !formData.jurusan.trim() ||
+      !formData.email.trim() ||
+      !formData.tanggal ||
+      !selectedSesi ||
+      !formData.keluhan.trim() // Keluhan juga dianggap wajib
+    ) {
+      setAlertMessage("Mohon lengkapi semua data formulir terlebih dahulu.");
       setShowAlert(true);
-      return;
+      return; // Hentikan proses submit jika ada field kosong
     }
 
     try {
       await addDoc(collection(db, "konsultasi_offline"), {
-        // Baris-baris ini yang perlu ditambahkan/dipastikan ada:
-        nama: formData.nama,       // <-- Tambahkan ini
-        nrp: formData.nrp,         // <-- Tambahkan ini
-        jurusan: formData.jurusan, // <-- Tambahkan ini
-        email: formData.email,     // <-- Tambahkan ini
-        // ... (sisanya adalah kode yang sudah ada)
+        nama: formData.nama,
+        nrp: formData.nrp,
+        jurusan: formData.jurusan,
+        email: formData.email,
         tanggal: formData.tanggal,
         sesi: selectedSesi,
         keluhan: formData.keluhan,
@@ -121,11 +130,16 @@ export default function FormKonsultasiOffline() {
                 <div className={styles.shccText}>
                   <h3 className={styles.shccTitle}>Student Health Care Center</h3>
                   <p className={styles.shccDesc}>
-                    Konsultasikan masalah mental health kamu <span className={styles.greenText}>GRATIS!</span><br />
+                    Konsultasikan masalah mental health kamu{" "}
+                    <span className={styles.greenText}>GRATIS!</span>
+                    <br />
                     Dengan psikolog dari Dear Astrid di SHCC
                   </p>
                   <p className={styles.shccLocation}>
-                    Lokasi : <span className={styles.blueText}>Lantai 2, Kantin Pusat ITS</span>
+                    Lokasi :{" "}
+                    <span className={styles.blueText}>
+                      Lantai 2, Kantin Pusat ITS
+                    </span>
                   </p>
                 </div>
               </div>
@@ -140,6 +154,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: Jane Doe"
                       value={formData.nama}
                       onChange={handleChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -150,6 +165,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: 502622XXXX"
                       value={formData.nrp}
                       onChange={handleChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
                 </div>
@@ -163,6 +179,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: Sistem Informasi"
                       value={formData.jurusan}
                       onChange={handleChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -173,6 +190,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="email@student.its.ac.id"
                       value={formData.email}
                       onChange={handleChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
                 </div>
@@ -185,6 +203,7 @@ export default function FormKonsultasiOffline() {
                       name="tanggal"
                       value={formData.tanggal}
                       onChange={handleDateChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
 
@@ -217,6 +236,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Tuliskan keluhan anda disini......"
                       value={formData.keluhan}
                       onChange={handleChange}
+                      required // Tambahkan atribut required HTML5
                     />
                   </div>
                 </div>

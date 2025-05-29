@@ -178,7 +178,7 @@ export default function DetailPesananOfflineView() {
                 {/* Baris untuk NAMA PSIKOLOG */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>NAMA PSIKOLOG</span>
+                    <span className={styles.detailLabel}>PENYEDIA KONSULTASI</span>
                     <span className={styles.detailValue}>{pesanan.namaPsikolog}</span>
                   </div>
                 </div>

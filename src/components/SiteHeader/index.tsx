@@ -17,33 +17,18 @@ function formatRouteSegmentToTitle(segment?: string): string {
 }
 
 const featureKeywordTitles: { [keyword: string]: string } = {
-  'konsultasionline': 'Konsultasi Online',
   'konsultasioffline': 'Konsultasi Offline',
-  'persetujuansesi': 'Persetujuan Sesi',
-  'terapimandiri': 'Terapi Mandiri',
-  'riwayatpesanan': 'Riwayat Pesanan',
-  'mulaikonsultasi': 'Mulai Konsultasi',
-  'jadwal': 'Jadwal',
-  'pengaturan': 'Pengaturan',
-  'editprofile': 'Edit Profil'
+  'lagutenang' :' Lagu Tenang'
 };
 
 const sectionTitles: { [key: string]: string } = {
-  '/konsultasionline': 'Konsultasi Online',
   '/konsultasioffline': 'Konsultasi Offline',
-  '/persetujuansesi': 'Persetujuan Sesi',
-  '/terapimandiri': 'Terapi Mandiri',
-  '/riwayatpesanan': 'Riwayat Pesanan',
-  '/mulaiKonsultasi': 'Mulai Konsultasi',
-  '/jadwal': 'Jadwal',
-  '/pengaturan': 'Pengaturan',
-  '/editprofile': 'Edit Profil'
+  '/lagutenang' : 'Lagu Tenang'
 };
 
 const customRouteTitles: { [key: string]: string } = {
   '/': 'Beranda',
   '/mahasiswa/beranda': 'Beranda',
-  '/psikolog/beranda': 'Beranda',
 };
 
 function getPageTitle(pathname: string): string {

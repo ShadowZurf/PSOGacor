@@ -167,3 +167,22 @@
     font-size: 0.85rem;
   }
 }
+
+@keyframes slideFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.greetingAnimated {
+  animation: slideFadeIn 0.8s ease-out both;
+}
+
+.greetingAnimatedDelay {
+  animation-delay: 0.3s;
+}

@@ -1,4 +1,4 @@
-import { Home, Video, UsersRound, History, Settings } from "lucide-react";
+import { Home, UsersRound, AudioLines } from "lucide-react"; // Hapus Video & Settings
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { NavUser } from "@/components/nav-user";
@@ -16,17 +16,12 @@ import {
 } from "@/components/ui/sidebar";
 import styles from "./app-sidebar.module.css";
 
-// Semua fitur utama (termasuk Beranda)
+// Semua fitur utama (Konsultasi Online telah dihapus)
 const mainFeatures = [
   {
     title: "Beranda",
-    url: "/mahasiswa/beranda",
+    url: "/",
     icon: Home,
-  },
-  {
-    title: "Konsultasi Online",
-    url: "/mahasiswa/konsultasionline",
-    icon: Video,
   },
   {
     title: "Konsultasi Offline",
@@ -34,19 +29,12 @@ const mainFeatures = [
     icon: UsersRound,
   },
   {
-    title: "Riwayat Pesanan",
-    url: "/mahasiswa/riwayatpesanan",
-    icon: History,
+    title: "Lagu Tenang",
+    url: "/mahasiswa/lagutenang",
+    icon: AudioLines,
   },
 ];
 
-const pengaturan = [
-  {
-    title: "Edit Profil",
-    url: "/mahasiswa/edit-profil",
-    icon: Settings,
-  },
-];
 
 const data = {
   user: {
@@ -91,27 +79,10 @@ export function AppSidebar() {
                     <a
                       href={item.url}
                       className={`${styles.sidebarMenu} ${
-                        pathname.startsWith(item.url) ? styles.active : ""
-                      }`}
-                    >
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-
-            {/* Pengaturan */}
-            <SidebarGroupLabel>Pengaturan</SidebarGroupLabel>
-            <SidebarMenu>
-              {pengaturan.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a
-                      href={item.url}
-                      className={`${styles.sidebarMenu} ${
-                        pathname.startsWith(item.url) ? styles.active : ""
+                        (item.url === "/" && pathname === item.url) ||
+                        (item.url !== "/" && pathname.startsWith(item.url))
+                          ? styles.active
+                          : ""
                       }`}
                     >
                       <item.icon />

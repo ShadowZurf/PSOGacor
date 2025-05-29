@@ -8,14 +8,12 @@
 }
 
 .sidebarMenuButton {
-  /* padding: 1rem 0.5rem 0rem 0.5rem; */
   color: black;
   text-decoration: none;
   font-size: 1.5rem;
 }
 
 .sidebarMenuButton span {
-  /* padding: 1rem 0.5rem 0rem 0.5rem; */
   padding-left: 0.3rem;
 }
 
@@ -26,7 +24,12 @@
   width: 110%;
   height: auto;
   display: flex;
+  align-items: center; /* Tambahan agar ikon & teks rata vertikal */
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: background-color 0.2s ease;
 }
+
 .sidebarMenu:hover {
   background-color: var(--yellow-primary);
   color: black;
@@ -40,4 +43,3 @@
   border-radius: 8px;
   color: black;
 }
-

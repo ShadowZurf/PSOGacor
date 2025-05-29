@@ -143,3 +143,8 @@ a {
     @apply bg-background text-foreground;
   }
 }
+
+  input::placeholder,
+  textarea::placeholder {
+    @apply text-sm text-muted-foreground;
+  }

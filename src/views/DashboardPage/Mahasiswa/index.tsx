@@ -19,10 +19,12 @@ export default function MahasiswaDashboardPage() {
         <div className={styles.pageWrapper}>
           <section className={styles.greetingSection}>
             <Container fluid="xl" className={styles.sectionContainer}>
-              <h1 className={styles.greeting}>
-                Selamat datang, Krisna Setia Himawhan
+              <h1 className={`${styles.greeting} ${styles.greetingAnimated}`}>
+                Selamat datang di ITS-OK
               </h1>
-              <p className={styles.role}>Mahasiswa</p>
+              <p className={`${styles.role} ${styles.greetingAnimated} ${styles.greetingAnimatedDelay}`}>
+                Platform layanan kesehatan mental untuk mahasiswa ITS
+              </p>
             </Container>
           </section>
 
@@ -34,44 +36,17 @@ export default function MahasiswaDashboardPage() {
                 </h2>
                 <p className={styles.serviceSubtitle}>
                   Pilih layanan yang Anda butuhkan dan rasakan manfaat nyata
-                  dari konsultasi online, offline, atau terapi mandiri.
+                  dari konsultasi offline atau terapi mandiri.
                 </p>
 
                 <Row className={styles.cardRow}>
-                  <Col md={6} lg={4} className="mb-4 d-flex">
-                    <div className={`${styles.cardBox} d-flex flex-column`}>
-                      <div className={styles.imagePlaceholder}>
-                        <Image
-                          src="/assets/gambar-daftar-konsultasi-online.png"
-                          alt="Konsultasi Online"
-                          // layout="fill"
-                          objectFit="cover"
-                          width={240}
-                          height={10}
-                        />
-                      </div>
-                      <h3 className={styles.cardTitle}>
-                        Daftar Konsultasi Online
-                      </h3>
-                      <p className={styles.cardText}>
-                        Pilih psikolog dan jadwal yang sesuai untuk sesi
-                        konsultasi kesehatan mental secara online.
-                      </p>
-                      <Button
-                        variant="primary"
-                        className={`${styles.primaryButton} mt-auto`}
-                      >
-                        Daftar
-                      </Button>
-                    </div>
-                  </Col>
-                  <Col md={6} lg={4} className="mb-4 d-flex">
+                  {/* Daftar Konsultasi Offline */}
+                  <Col md={6} lg={6} className="mb-4 d-flex">
                     <div className={`${styles.cardBox} d-flex flex-column`}>
                       <div className={styles.imagePlaceholder}>
                         <Image
                           src="/assets/gambar-daftar-konsultasi-offline.png"
                           alt="Konsultasi Offline"
-                          // layout="fill"
                           objectFit="cover"
                           width={240}
                           height={10}
@@ -88,31 +63,35 @@ export default function MahasiswaDashboardPage() {
                       <Button
                         variant="primary"
                         className={`${styles.primaryButton} mt-auto`}
+                        href="/mahasiswa/konsultasioffline"
                       >
                         Daftar
                       </Button>
                     </div>
                   </Col>
-                  <Col md={6} lg={4} className="mb-4 d-flex">
+
+                  {/* Lagu Tenang */}
+                  <Col md={6} lg={6} className="mb-4 d-flex">
                     <div className={`${styles.cardBox} d-flex flex-column`}>
                       <div className={styles.imagePlaceholder}>
                         <Image
                           src="/assets/gambar-terapi-mandiri.png"
-                          alt="Terapi Mandiri"
-                          // layout="fill"
+                          alt="Lagu Tenang"
                           objectFit="cover"
                           width={240}
                           height={10}
                         />
                       </div>
-                      <h3 className={styles.cardTitle}>Terapi Mandiri</h3>
+                      <h3 className={styles.cardTitle}>Lagu Tenang</h3>
                       <p className={styles.cardText}>
-                        Melakukan sesi meditasi mandiri atau dengan bantuan lagu
-                        pilihan untuk meningkatkan kesehatan mental Anda.
+                        Dengarkan musik santai yang menenangkan hati untuk
+                        membantu Anda mengelola stres dan meningkatkan suasana
+                        hati.
                       </p>
                       <Button
                         variant="primary"
                         className={`${styles.primaryButton} mt-auto`}
+                        href="/mahasiswa/lagutenang"
                       >
                         Mulai
                       </Button>

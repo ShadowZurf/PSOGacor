@@ -53,7 +53,7 @@ export default function FormKonsultasiOffline() {
     router.push("/mahasiswa/konsultasioffline");
   };
 
-  const handleSubmit = async () => {
+   const handleSubmit = async () => {
     if (!selectedSesi || !formData.tanggal) {
       setAlertMessage("Pastikan memilih tanggal dan sesi terlebih dahulu.");
       setShowAlert(true);
@@ -62,10 +62,12 @@ export default function FormKonsultasiOffline() {
 
     try {
       await addDoc(collection(db, "konsultasi_offline"), {
-        nama: formData.nama,
-        nrp: formData.nrp,
-        jurusan: formData.jurusan,
-        email: formData.email,
+        // Baris-baris ini yang perlu ditambahkan/dipastikan ada:
+        nama: formData.nama,       // <-- Tambahkan ini
+        nrp: formData.nrp,         // <-- Tambahkan ini
+        jurusan: formData.jurusan, // <-- Tambahkan ini
+        email: formData.email,     // <-- Tambahkan ini
+        // ... (sisanya adalah kode yang sudah ada)
         tanggal: formData.tanggal,
         sesi: selectedSesi,
         keluhan: formData.keluhan,

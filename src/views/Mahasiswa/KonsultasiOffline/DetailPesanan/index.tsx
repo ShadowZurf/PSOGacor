@@ -23,13 +23,17 @@ const statusConfig: StatusConfig = {
 };
 
 interface PesananData {
+  nama: string; // Tambahkan
+  nrp: string; // Tambahkan
+  jurusan: string; // Tambahkan
+  email: string; // Tambahkan
   namaPsikolog: string;
   tanggalPengajuan: string;
   tanggal: string;
   sesi: string;
-  lokasi: string;
   keluhan: string;
   status: string;
+  lokasi: string; // Pindahkan ke sini untuk kemudahan
 }
 
 export default function DetailPesananOfflineView() {
@@ -52,13 +56,17 @@ export default function DetailPesananOfflineView() {
         if (docSnap.exists()) {
           const data = docSnap.data();
           setPesanan({
+            nama: data.nama || "-", // Ambil dari Firestore
+            nrp: data.nrp || "-", // Ambil dari Firestore
+            jurusan: data.jurusan || "-", // Ambil dari Firestore
+            email: data.email || "-", // Ambil dari Firestore
             namaPsikolog: data.namaPsikolog || "-",
             tanggalPengajuan: data.tanggalPengajuan?.toDate().toLocaleString() || "-",
             tanggal: data.tanggal || "-",
             sesi: data.sesi || "-",
-            lokasi: data.lokasi || "-",
             keluhan: data.keluhan || "-",
             status: data.status || "Terdaftar",
+            lokasi: data.lokasi || "-",
           });
         } else {
           setPesanan(null);
@@ -131,6 +139,43 @@ export default function DetailPesananOfflineView() {
               </div>
 
               <div className={styles.detailGrid}>
+                {/* Baris untuk NAMA LENGKAP dan NRP */}
+                <div className={styles.detailRow}>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>NAMA LENGKAP</span>
+                    <span className={styles.detailValue}>{pesanan.nama}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>NRP</span>
+                    <span className={styles.detailValue}>{pesanan.nrp}</span>
+                  </div>
+                </div>
+
+                {/* Baris untuk JURUSAN dan EMAIL */}
+                <div className={styles.detailRow}>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>JURUSAN</span>
+                    <span className={styles.detailValue}>{pesanan.jurusan}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>EMAIL</span>
+                    <span className={styles.detailValue}>{pesanan.email}</span>
+                  </div>
+                </div>
+
+                {/* Baris untuk JADWAL KONSULTASI dan SESI KONSULTASI */}
+                <div className={styles.detailRow}>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>JADWAL KONSULTASI</span>
+                    <span className={styles.detailValue}>{pesanan.tanggal}</span>
+                  </div>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>SESI KONSULTASI</span>
+                    <span className={styles.detailValue}>{pesanan.sesi}</span>
+                  </div>
+                </div>
+
+                {/* Baris untuk NAMA PSIKOLOG */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>NAMA PSIKOLOG</span>
@@ -138,31 +183,19 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                <div className={styles.detailRow}>
-                  <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>JADWAL KONSULTASI</span>
-                    <span className={styles.detailValue}>{pesanan.tanggal}</span>
-                  </div>
-                </div>
-
-                <div className={styles.detailRow}>
-                  <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>SESI KONSULTASI</span>
-                    <span className={styles.detailValue}>{pesanan.sesi}</span>
-                  </div>
-                </div>
-
-                <div className={styles.detailRow}>
-                  <div className={styles.detailItem}>
-                    <span className={styles.detailLabel}>LOKASI KONSULTASI</span>
-                    <span className={styles.detailValue}>{pesanan.lokasi}</span>
-                  </div>
-                </div>
-
+                {/* Baris untuk KELUHAN PASIEN */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>KELUHAN PASIEN</span>
                     <p className={styles.keluhanText}>{pesanan.keluhan}</p>
+                  </div>
+                </div>
+
+                {/* Baris untuk LOKASI KONSULTASI (dipindahkan ke bawah) */}
+                <div className={styles.detailRow}>
+                  <div className={styles.detailItem}>
+                    <span className={styles.detailLabel}>LOKASI KONSULTASI</span>
+                    <span className={styles.detailValue}>{pesanan.lokasi}</span>
                   </div>
                 </div>
               </div>

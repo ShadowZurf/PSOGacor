@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import styles from "./konsultasi-offline.module.css";
-import { Video, CheckCircle, Trash2 } from "lucide-react";
+import { UsersRound, CheckCircle, Trash2 } from "lucide-react";
 import { doc, deleteDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 
@@ -46,7 +46,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
       <div className={styles.wrapper}>
         <div className={styles.card}>
           <div className={styles.iconContainer}>
-            <Video size={24} className={styles.icon} />
+            <UsersRound size={24} className={styles.icon} />
           </div>
           <span className={styles.message}>Tidak Ada Pesanan</span>
         </div>
@@ -80,7 +80,7 @@ const [hoveredId, setHoveredId] = useState<string | null>(null);
           >
             <div className={styles.card}>
               <div className={styles.iconContainer}>
-                <Video size={24} className={styles.icon} />
+                <UsersRound size={24} className={styles.icon} />
               </div>
 
               <div className={styles.content}>

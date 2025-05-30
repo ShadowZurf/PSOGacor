@@ -8,7 +8,14 @@ import { useState } from "react";
 import Image from "next/image";
 import SuccessOrder from "@/components/SuccessOrder";
 import { db } from "@/lib/firebase";
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
 
 export default function FormKonsultasiOffline() {
   const router = useRouter();
@@ -44,7 +51,6 @@ export default function FormKonsultasiOffline() {
     if (!isTuesdayOrThursday(selectedDate)) {
       setAlertMessage("Mohon pilih hari Selasa atau Kamis saja");
       setShowAlert(true);
-      // Kosongkan tanggal agar user tidak bisa submit dengan tanggal salah
       setFormData((prev) => ({ ...prev, tanggal: "" }));
       return;
     }
@@ -55,21 +61,55 @@ export default function FormKonsultasiOffline() {
     router.push("/mahasiswa/konsultasioffline");
   };
 
+  const checkKuotaSesiDanHari = async () => {
+    const q = query(
+      collection(db, "konsultasi_offline"),
+      where("tanggal", "==", formData.tanggal)
+    );
+    const querySnapshot = await getDocs(q);
+    let countPerSesi = 0;
+    let totalCount = 0;
+
+    querySnapshot.forEach((doc) => {
+      const data = doc.data();
+      if (data.sesi === selectedSesi) {
+        countPerSesi++;
+      }
+      totalCount++;
+    });
+
+    if (totalCount >= 6) {
+      setAlertMessage("Kuota untuk hari tersebut sudah penuh. Silakan pilih tanggal lain.");
+      setShowAlert(true);
+      return false;
+    }
+
+    if (countPerSesi >= 2) {
+      setAlertMessage(`Kuota untuk sesi ${selectedSesi} sudah penuh. Silakan pilih sesi lain.`);
+      setShowAlert(true);
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSubmit = async () => {
-    // Validasi semua field yang wajib diisi
     if (
-      !formData.nama.trim() || // .trim() untuk menghapus spasi di awal/akhir
+      !formData.nama.trim() ||
       !formData.nrp.trim() ||
       !formData.jurusan.trim() ||
       !formData.email.trim() ||
       !formData.tanggal ||
       !selectedSesi ||
-      !formData.keluhan.trim() // Keluhan juga dianggap wajib
+      !formData.keluhan.trim()
     ) {
       setAlertMessage("Mohon lengkapi semua data formulir terlebih dahulu.");
       setShowAlert(true);
-      return; // Hentikan proses submit jika ada field kosong
+      return;
     }
+
+    const isKuotaTersedia = await checkKuotaSesiDanHari();
+    if (!isKuotaTersedia) return;
 
     try {
       await addDoc(collection(db, "konsultasi_offline"), {
@@ -154,7 +194,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: Jane Doe"
                       value={formData.nama}
                       onChange={handleChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -165,7 +205,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: 502622XXXX"
                       value={formData.nrp}
                       onChange={handleChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
                 </div>
@@ -179,7 +219,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Contoh: Sistem Informasi"
                       value={formData.jurusan}
                       onChange={handleChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
                   <div className={styles.detailItem}>
@@ -190,7 +230,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="email@student.its.ac.id"
                       value={formData.email}
                       onChange={handleChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
                 </div>
@@ -203,7 +243,7 @@ export default function FormKonsultasiOffline() {
                       name="tanggal"
                       value={formData.tanggal}
                       onChange={handleDateChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
 
@@ -236,7 +276,7 @@ export default function FormKonsultasiOffline() {
                       placeholder="Tuliskan keluhan anda disini......"
                       value={formData.keluhan}
                       onChange={handleChange}
-                      required // Tambahkan atribut required HTML5
+                      required
                     />
                   </div>
                 </div>
@@ -256,7 +296,6 @@ export default function FormKonsultasiOffline() {
         </div>
       </DashboardLayout>
 
-      {/* Custom Alert */}
       {showAlert && (
         <div className={styles.customAlert}>
           <div className={styles.alertBox}>

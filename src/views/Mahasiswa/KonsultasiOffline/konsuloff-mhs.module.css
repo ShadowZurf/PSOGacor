@@ -45,6 +45,16 @@
   color: #FFD680;
 }
 
+.dateGroupLabel {
+  max-width: 1200px;
+  margin: 0 auto 0.5rem auto;    /* align center, bawah ada jarak ke card */
+  padding-left: 2.7rem;          /* align dengan judul dan card */
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: 0.02em;
+}
+
 @media (max-width: 768px) {
   .pageWrapper {
     padding: 1.5rem 1rem;
@@ -65,9 +75,14 @@
   }
 
   .registerButton {
-    /* JANGAN pakai width 100%, biarkan auto */
     font-size: 0.95rem;
     padding: 0.6rem 1.2rem !important;
-    align-self: flex-start; /* biar tetap ke kiri */
+    align-self: flex-start;
+  }
+
+  .dateGroupLabel {
+    padding-left: 0;
+    font-size: 1rem;
+    max-width: 100%;
   }
 }

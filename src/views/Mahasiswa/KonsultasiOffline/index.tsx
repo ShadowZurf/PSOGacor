@@ -8,7 +8,6 @@ import { Plus } from "lucide-react";
 import NoOrderMahasiswa from "@/components/NoOrder/Mahasiswa";
 import OrderMahasiswa from "@/components/Order/KonsultasiOffline";
 import PaginationComponent from "@/components/Pagination/Mahasiswa";
-
 import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
@@ -18,6 +17,20 @@ interface SesiData {
   tanggal: string;
   sesi: string;
   status: "terdaftar";
+}
+
+// Helper untuk format tanggal Indonesia
+function formatTanggalIndo(tanggal: string) {
+  const bulanIndo = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+  ];
+  const dateObj = new Date(tanggal);
+  if (isNaN(dateObj.getTime())) return tanggal; // fallback jika error
+  const d = dateObj.getDate();
+  const m = bulanIndo[dateObj.getMonth()];
+  const y = dateObj.getFullYear();
+  return `${d.toString().padStart(2, "0")} ${m} ${y}`;
 }
 
 export default function KonsultasiOfflineMahasiswa() {
@@ -53,16 +66,29 @@ export default function KonsultasiOfflineMahasiswa() {
     fetchData();
   }, []);
 
-  const totalPages = Math.ceil(orderData.length / itemsPerPage);
+  // Sort & pagination
+  const sortedData = [...orderData].sort(
+    (a, b) => new Date(b.tanggal).getTime() - new Date(a.tanggal).getTime()
+  );
+  const totalPages = Math.ceil(sortedData.length / itemsPerPage);
+  const currentPageData = sortedData.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
   const handlePageChange = (page: number) => {
     if (page >= 1 && page <= totalPages) {
       setCurrentPage(page);
     }
   };
 
-  const currentPageData = orderData.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+  // Group by tanggal (string: array of SesiData)
+  const groupedByTanggal: { [key: string]: SesiData[] } = {};
+  currentPageData.forEach((item) => {
+    if (!groupedByTanggal[item.tanggal]) groupedByTanggal[item.tanggal] = [];
+    groupedByTanggal[item.tanggal].push(item);
+  });
+  const tanggalList = Object.keys(groupedByTanggal).sort(
+    (a, b) => new Date(b).getTime() - new Date(a).getTime()
   );
 
   return (
@@ -91,7 +117,16 @@ export default function KonsultasiOfflineMahasiswa() {
             <NoOrderMahasiswa />
           ) : (
             <>
-              <OrderMahasiswa data={currentPageData} />
+              <div>
+                {tanggalList.map((tanggal) => (
+                  <div key={tanggal} style={{ marginBottom: "2rem" }}>
+                    <h6 className={styles.dateGroupLabel}>
+                      {formatTanggalIndo(tanggal)}
+                    </h6>
+                    <OrderMahasiswa data={groupedByTanggal[tanggal]} />
+                  </div>
+                ))}
+              </div>
               <PaginationComponent
                 currentPage={currentPage}
                 totalPages={totalPages}

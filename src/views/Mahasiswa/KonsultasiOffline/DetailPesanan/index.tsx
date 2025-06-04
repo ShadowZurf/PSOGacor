@@ -23,23 +23,25 @@ const statusConfig: StatusConfig = {
 };
 
 interface PesananData {
-  nama: string; // Tambahkan
-  nrp: string; // Tambahkan
-  jurusan: string; // Tambahkan
-  email: string; // Tambahkan
+  nama: string;
+  nrp: string;
+  jurusan: string;
+  email: string;
   namaPsikolog: string;
   tanggalPengajuan: string;
   tanggal: string;
   sesi: string;
   keluhan: string;
   status: string;
-  lokasi: string; // Pindahkan ke sini untuk kemudahan
+  lokasi: string;
 }
 
-export default function DetailPesananOfflineView() {
-  const router = useRouter();
-  const { id } = router.query;
+interface DetailPesananOfflineViewProps {
+  id: string;
+}
 
+export default function DetailPesananOfflineView({ id }: DetailPesananOfflineViewProps) {
+  const router = useRouter();
   const [pesanan, setPesanan] = useState<PesananData | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -50,16 +52,16 @@ export default function DetailPesananOfflineView() {
 
     const fetchData = async () => {
       try {
-        const docRef = doc(db, "konsultasi_offline", String(id));
+        const docRef = doc(db, "konsultasi_offline", id);
         const docSnap = await getDoc(docRef);
 
         if (docSnap.exists()) {
           const data = docSnap.data();
           setPesanan({
-            nama: data.nama || "-", // Ambil dari Firestore
-            nrp: data.nrp || "-", // Ambil dari Firestore
-            jurusan: data.jurusan || "-", // Ambil dari Firestore
-            email: data.email || "-", // Ambil dari Firestore
+            nama: data.nama || "-",
+            nrp: data.nrp || "-",
+            jurusan: data.jurusan || "-",
+            email: data.email || "-",
             namaPsikolog: data.namaPsikolog || "-",
             tanggalPengajuan: data.tanggalPengajuan?.toDate().toLocaleString() || "-",
             tanggal: data.tanggal || "-",
@@ -86,7 +88,6 @@ export default function DetailPesananOfflineView() {
     switch (status) {
       case "Terdaftar":
         return <CheckCircle size={16} />;
-      // bisa tambahkan status lain nanti
       default:
         return null;
     }
@@ -121,9 +122,7 @@ export default function DetailPesananOfflineView() {
                 </h3>
                 <div className={styles.submissionDate}>
                   <span className={styles.dateLabel}>TANGGAL PENGAJUAN</span>
-                  <span className={styles.dateValue}>
-                    {pesanan.tanggalPengajuan}
-                  </span>
+                  <span className={styles.dateValue}>{pesanan.tanggalPengajuan}</span>
                 </div>
                 <div
                   className={styles.statusBadge}
@@ -139,7 +138,6 @@ export default function DetailPesananOfflineView() {
               </div>
 
               <div className={styles.detailGrid}>
-                {/* Baris untuk NAMA LENGKAP dan NRP */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>NAMA LENGKAP</span>
@@ -151,7 +149,6 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                {/* Baris untuk JURUSAN dan EMAIL */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>JURUSAN</span>
@@ -163,7 +160,6 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                {/* Baris untuk JADWAL KONSULTASI dan SESI KONSULTASI */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>JADWAL KONSULTASI</span>
@@ -175,7 +171,6 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                {/* Baris untuk NAMA PSIKOLOG */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>PENYEDIA KONSULTASI</span>
@@ -183,7 +178,6 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                {/* Baris untuk KELUHAN PASIEN */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>KELUHAN PASIEN</span>
@@ -191,7 +185,6 @@ export default function DetailPesananOfflineView() {
                   </div>
                 </div>
 
-                {/* Baris untuk LOKASI KONSULTASI (dipindahkan ke bawah) */}
                 <div className={styles.detailRow}>
                   <div className={styles.detailItem}>
                     <span className={styles.detailLabel}>LOKASI KONSULTASI</span>

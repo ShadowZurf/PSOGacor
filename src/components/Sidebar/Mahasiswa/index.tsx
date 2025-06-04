@@ -1,7 +1,6 @@
 import { Home, UsersRound, AudioLines } from "lucide-react"; // Hapus Video & Settings
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
@@ -34,14 +33,6 @@ const mainFeatures = [
     icon: AudioLines,
   },
 ];
-
-
-const data = {
-  user: {
-    name: "shadcn",
-    email: "m@example.com",
-  },
-};
 
 export function AppSidebar() {
   const router = useRouter();
@@ -96,7 +87,6 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className={styles.sidebarFooter}>
-        <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
   );

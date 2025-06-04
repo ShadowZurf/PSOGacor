@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import KonsultasiOfflineMahasiswa from '../index';
+import KonsultasiOfflineMahasiswa from '../views/Mahasiswa/KonsultasiOffline/index';
 
 describe('KonsultasiOfflineMahasiswa', () => {
   it('menampilkan judul halaman', () => {

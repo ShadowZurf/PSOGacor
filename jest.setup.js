@@ -1,4 +1,6 @@
 // jest.setup.js
+import '@testing-library/jest-dom'
+
 if (!window.matchMedia) {
   window.matchMedia = function (query) {
     return {

@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [master, staging, 'feature/*']
+    branches: [master, staging, sonar, 'feature/*']
   pull_request:
     branches: [master, staging]
 
@@ -24,9 +24,15 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
-      - name: Run Tests
-        run: npm test
+      - name: Run Tests with Coverage
+        run: npm run test -- --coverage
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          projectBaseDir: .
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       # - name: Build Project
       #   run: npm run build
-

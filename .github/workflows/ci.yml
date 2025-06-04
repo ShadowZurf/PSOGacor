@@ -24,9 +24,15 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+      - name: Enable Babel for Jest
+        run: babel.config.js
+
       - name: Run Tests
         run: npm test
 
-      # - name: Build Project
-        # run: npm run build
+      - name: Disable Babel for Next.js build
+        run: babel.config.js
+
+      - name: Build Project
+        run: npm run build
 

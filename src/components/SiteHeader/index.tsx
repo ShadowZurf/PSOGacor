@@ -2,6 +2,7 @@ import styles from "./site-header.module.css";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useRouter } from 'next/router';
+import React from "react";
 
 function formatRouteSegmentToTitle(segment?: string): string {
   if (!segment || segment.trim() === '') return 'Beranda';

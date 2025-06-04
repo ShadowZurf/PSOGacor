@@ -14,6 +14,7 @@ import {
   SidebarFooter,
 } from "@/components/ui/sidebar";
 import styles from "./app-sidebar.module.css";
+import React from "react";
 
 // Semua fitur utama (Konsultasi Online telah dihapus)
 const mainFeatures = [

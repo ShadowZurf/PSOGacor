@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./riwayatpesanan-mhs.module.css";
 import { Video, CheckCircle } from "lucide-react";
+import React from "react";
 
 interface RiwayatItem {
   id: string;

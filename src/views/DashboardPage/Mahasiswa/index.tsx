@@ -3,6 +3,8 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import styles from "./dashboard-mhs.module.css";
 import DashboardLayout from "@/layouts/dashboard";
 import Image from "next/image";
+import React from "react";
+
 
 export default function MahasiswaDashboardPage() {
   return (

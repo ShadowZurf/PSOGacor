@@ -1,5 +1,6 @@
 import { Pagination } from "react-bootstrap";
 import styles from "./pagination-mhs.module.css";
+import React from "react";
 
 interface PaginationProps {
   currentPage: number;

@@ -26,6 +26,14 @@ Fitur yang ada pada ITS OK terbagi menjadi 2 yaitu untuk mahasiswa (pelanggan) d
 ```bash
 git clone https://github.com/ShadowZurf/PSOGacor.git
 ```
-- Go to your project directory
-
+- Go to your project directory and make sure the files are there
+- Open your terminal again and install our depedencies, run this following command
+```bash
+npm install
+```
+- Configure the environment variables. In this project, we use firebase and firestore.
+- Open your terminal again and run locally the code with the following command
+```bash
+npm run dev
+```
 

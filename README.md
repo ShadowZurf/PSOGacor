@@ -31,5 +31,9 @@ git clone https://github.com/ShadowZurf/PSOGacor.git
 ```bash
 npm install
 ```
-- 
+- Configure the environment variables. In this project, we use firebase and firestore.
+- Open your terminal again and run locally the code with the following command
+```bash
+npm run dev
+```
 

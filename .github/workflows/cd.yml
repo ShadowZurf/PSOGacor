@@ -13,7 +13,7 @@ jobs:
       github.event.workflow_run.head_branch == 'master'
     runs-on: ubuntu-latest
     env:
-      PROJECT_ID: wide-brook-461507-g7
+      PROJECT_ID: psogacor
       REGION: asia-southeast2
       SERVICE: fp-pso-deploy
       REPOSITORY: fp-pso

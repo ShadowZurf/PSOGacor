@@ -3,6 +3,7 @@ import DashboardLayout from "@/layouts/dashboard";
 import styles from "./lagutenang.module.css";
 import { useState } from "react";
 import { Form } from "react-bootstrap";
+import Image from 'next/image'
 
 interface LaguItem {
   id: string;
@@ -79,13 +80,13 @@ export default function LaguTenangMahasiswaPage() {
             {filteredLagu.map((lagu) => (
               <div key={lagu.id} className={styles.card}>
                 <div className={styles.coverWrapper}>
-                  <img
+                  <Image
                     src={lagu.cover}
                     alt={lagu.judul}
+                    width={300}  // <-- HARUS kasih width & height di Next.js <Image />
+                    height={300}
                     className={styles.coverImage}
-                    onError={(e) =>
-                      (e.currentTarget.src = "/assets/audio/placeholder.png")
-                    }
+                    onError={(e) => (e.currentTarget.src = "/assets/audio/placeholder.png")}
                   />
                 </div>
 

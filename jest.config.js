@@ -33,12 +33,13 @@ const customJestConfig = {
     '<rootDir>/coverage/',
   ],
   collectCoverageFrom: [
-    'src/components//*.tsx',
+    'src/components/**/*.tsx',
     'src/layouts/dashboard.tsx',
-    'src/lib//*.tsx',
-    'src/pages//*.{js,jsx,ts,tsx}',
-    'src/views//*.tsx',
+    'src/lib/**/*.tsx',
+    'src/pages/**/*.{js,jsx,ts,tsx}',
+    'src/views/**/*.tsx',
     // exclusions
+    '!src/components/ui/**', 
     '!src/pages/_app.tsx',
     '!src/pages/_document.tsx',
     '!/*.config.js',

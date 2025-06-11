@@ -2,6 +2,15 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import DashboardPage from "../views/DashboardPage/Mahasiswa/index";
 import Home from "../pages/index"
+import { useRouter } from "next/router";
+
+jest.mock("next/router", () => ({
+  useRouter: jest.fn(),
+}));
+
+beforeEach(() => {
+  (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
+});
 
 describe("Dashboard Page Mahasiswa", () => {
   it("renders dashboard page", () => {
@@ -41,35 +50,61 @@ describe("Home Page (pages/index.tsx)", () => {
     expect(daftarBtn).toHaveAttribute('href', '/mahasiswa/konsultasioffline');
   });
 
-// describe("Sidebar di Dashboard", () => {
-//   beforeEach(() => {
-//     render(<DashboardPage />);
-//   });
+describe("Sidebar di Dashboard", () => {
+  beforeEach(() => {
+    render(<DashboardPage />);
+  });
 
-//   it("menampilkan menu 'Beranda'", () => {
-//     expect(screen.getByText(/beranda/i)).toBeInTheDocument();
-//   });
+  it("menampilkan menu 'Beranda'", () => {
+    expect(screen.getByRole('link', { name: /beranda/i })).toBeInTheDocument();
+  });
 
-//   it("menampilkan menu 'Konsultasi Offline'", () => {
-//     expect(screen.getByText(/konsultasi offline/i)).toBeInTheDocument();
-//   });
+  it("menampilkan menu 'Konsultasi Offline'", () => {
+    expect(screen.getByRole('link', { name: /konsultasi offline/i })).toBeInTheDocument();
+  });
 
-//   it("menampilkan menu 'Lagu Tenang'", () => {
-//     expect(screen.getByText(/lagu tenang/i)).toBeInTheDocument();
-//   });
+  it("menampilkan menu 'Lagu Tenang'", () => {
+    expect(screen.getByRole('link', { name: /konsultasi offline/i })).toBeInTheDocument();
+  });
 
-//   it("menu 'Beranda' punya href '/'", () => {
-//     const beranda = screen.getByRole('link', { name: /beranda/i });
-//     expect(beranda).toHaveAttribute('href', '/');
-//   });
+  it("menu 'Beranda' punya href '/'", () => {
+    const beranda = screen.getByRole('link', { name: /beranda/i });
+    expect(beranda).toHaveAttribute('href', '/');
+  });
 
-//   it("menu 'Konsultasi Offline' punya href '/mahasiswa/konsultasioffline'", () => {
-//     const konsultasi = screen.getByRole('link', { name: /konsultasi offline/i });
-//     expect(konsultasi).toHaveAttribute('href', '/mahasiswa/konsultasioffline');
-//   });
+  it("menu 'Konsultasi Offline' punya href '/mahasiswa/konsultasioffline'", () => {
+    const konsultasi = screen.getByRole('link', { name: /konsultasi offline/i });
+    expect(konsultasi).toHaveAttribute('href', '/mahasiswa/konsultasioffline');
+  });
 
-//   it("menu 'Lagu Tenang' punya href '/mahasiswa/lagutenang'", () => {
-//     const laguTenang = screen.getByRole('link', { name: /lagu tenang/i });
-//     expect(laguTenang).toHaveAttribute('href', '/mahasiswa/lagutenang');
-//   });
-// });
+  it("menu 'Lagu Tenang' punya href '/mahasiswa/lagutenang'", () => {
+    const laguTenang = screen.getByRole('link', { name: /lagu tenang/i });
+    expect(laguTenang).toHaveAttribute('href', '/mahasiswa/lagutenang');
+  });
+});
+
+describe("Sidebar Active State", () => {
+  it("menu 'Lagu Tenang' aktif saat di halaman lagu tenang", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/mahasiswa/lagutenang" });
+
+    render(<DashboardPage />);
+    const laguTenang = screen.getByRole('link', { name: /lagu tenang/i });
+    expect(laguTenang.className).toMatch(/active/);
+  });
+
+  it("menu 'Konsultasi Offline' aktif saat di halaman konsultasi offline", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/mahasiswa/konsultasioffline" });
+
+    render(<DashboardPage />);
+    const konsultasi = screen.getByRole('link', { name: /konsultasi offline/i });
+    expect(konsultasi.className).toMatch(/active/);
+  });
+
+  it("menu 'Beranda' aktif saat di halaman utama", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
+
+    render(<DashboardPage />);
+    const beranda = screen.getByRole('link', { name: /beranda/i });
+    expect(beranda.className).toMatch(/active/);
+  });
+});

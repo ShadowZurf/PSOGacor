@@ -19,7 +19,7 @@ function formatRouteSegmentToTitle(segment?: string): string {
 
 const featureKeywordTitles: { [keyword: string]: string } = {
   'konsultasioffline': 'Konsultasi Offline',
-  'lagutenang' :' Lagu Tenang'
+  'lagutenang' :'Lagu Tenang'
 };
 
 const sectionTitles: { [key: string]: string } = {
@@ -32,7 +32,7 @@ const customRouteTitles: { [key: string]: string } = {
   '/mahasiswa/beranda': 'Beranda',
 };
 
-function getPageTitle(pathname: string): string {
+export function getPageTitle(pathname: string): string {
   // Cek exact match dan prefix match untuk customRouteTitles
   for (const key in customRouteTitles) {
     if (pathname === key || pathname.startsWith(key + '/')) {

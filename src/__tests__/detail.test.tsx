@@ -3,14 +3,12 @@ import DetailPesananOfflineView from '@/views/Mahasiswa/KonsultasiOffline/Detail
 import { getDoc } from 'firebase/firestore';
 import { useRouter } from 'next/router';
 
-// Mock Firestore lengkap
 jest.mock('firebase/firestore', () => ({
   doc: jest.fn(),
   getDoc: jest.fn(),
   getFirestore: jest.fn(() => ({})),
 }));
 
-// Mock Router lengkap
 jest.mock('next/router', () => ({
   useRouter: jest.fn(),
 }));
@@ -94,49 +92,26 @@ describe('DetailPesananOfflineView', () => {
     expect(mockBack).toHaveBeenCalled();
   });
 
-  // ✅ Tambahan edge-case 1: tanggalPengajuan undefined
-  it('should handle missing tanggalPengajuan gracefully', async () => {
+  // ✅ Edge case semua data kosong/null/undefined
+  it('should handle missing fields gracefully', async () => {
     (getDoc as jest.Mock).mockResolvedValueOnce({
       exists: () => true,
       data: () => ({
-        nama: 'Budi',
-        nrp: '05111940000123',
-        jurusan: 'Informatika',
-        email: 'budi@its.ac.id',
-        namaPsikolog: 'Psikolog A',
+        nama: undefined,
+        nrp: undefined,
+        jurusan: undefined,
+        email: undefined,
+        namaPsikolog: undefined,
         tanggalPengajuan: undefined,
-        tanggal: '2024-06-12',
-        sesi: 'Sesi 1',
-        keluhan: 'Stress',
-        status: 'Terdaftar',
-        lokasi: 'Ruang A',
+        tanggal: undefined,
+        sesi: undefined,
+        keluhan: undefined,
+        status: undefined,
+        lokasi: undefined,
       }),
     });
 
     render(<DetailPesananOfflineView id="123" />);
-    expect(await screen.findByText('-')).toBeInTheDocument();
-  });
-
-  // ✅ Tambahan edge-case 2: nama kosong
-  it('should fallback to "-" when nama is empty', async () => {
-    (getDoc as jest.Mock).mockResolvedValueOnce({
-      exists: () => true,
-      data: () => ({
-        nama: '',
-        nrp: '05111940000123',
-        jurusan: 'Informatika',
-        email: 'budi@its.ac.id',
-        namaPsikolog: 'Psikolog A',
-        tanggalPengajuan: { toDate: () => new Date('2024-06-11T10:00:00Z') },
-        tanggal: '2024-06-12',
-        sesi: 'Sesi 1',
-        keluhan: 'Stress',
-        status: 'Terdaftar',
-        lokasi: 'Ruang A',
-      }),
-    });
-
-    render(<DetailPesananOfflineView id="123" />);
-    expect(await screen.findByText('-')).toBeInTheDocument();
+    expect(await screen.findAllByText('-')).toHaveLength(10);
   });
 });

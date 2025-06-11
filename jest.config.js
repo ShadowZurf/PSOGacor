@@ -32,6 +32,14 @@ const customJestConfig = {
     '<rootDir>/public/',
     '<rootDir>/coverage/',
   ],
+
+  coveragePathIgnorePatterns: [
+  "/node_modules/",
+  "src/__tests__/",
+  ".test.tsx?$",
+  ".test.ts?$"
+  ],
+
   collectCoverageFrom: [
     'src/components/**/*.tsx',
     'src/layouts/dashboard.tsx',

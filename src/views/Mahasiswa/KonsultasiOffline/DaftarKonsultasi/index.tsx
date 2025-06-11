@@ -244,6 +244,7 @@ export default function FormKonsultasiOffline() {
                       value={formData.tanggal}
                       onChange={handleDateChange}
                       required
+                      data-testid="input-tanggal"
                     />
                   </div>
 

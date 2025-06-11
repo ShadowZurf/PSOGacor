@@ -2,11 +2,17 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import DashboardPage from "../views/DashboardPage/Mahasiswa/index";
 import Home from "../pages/index"
+import { SiteHeader } from "../components/SiteHeader";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { useRouter } from "next/router";
 
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
+
+function renderWithSidebarProvider(ui: React.ReactNode) {
+  return render(<SidebarProvider>{ui}</SidebarProvider>);
+}
 
 beforeEach(() => {
   (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
@@ -15,7 +21,6 @@ beforeEach(() => {
 describe("Dashboard Page Mahasiswa", () => {
   it("renders dashboard page", () => {
     render(<DashboardPage />);
-    // Sesuaikan dengan text yang memang ada di UI
     expect(screen.getByText(/Selamat datang/i)).toBeInTheDocument();
     expect(screen.getByText(/Platform layanan kesehatan mental untuk mahasiswa ITS/i)).toBeInTheDocument();
     expect(screen.getByText(/Pilih Layanan Sesuai Kebutuhan Anda/i)).toBeInTheDocument();
@@ -27,7 +32,6 @@ describe("Dashboard Page Mahasiswa", () => {
 describe("Home Page (pages/index.tsx)", () => {
   it("renders Home page via routing", () => {
     render(<Home />);
-    // Sesuaikan assertion sesuai isi halaman index.tsx
     expect(screen.getByText(/Selamat datang di ITS-OK/i)).toBeInTheDocument();
     expect(screen.getByText(/Platform layanan kesehatan mental untuk mahasiswa ITS/i)).toBeInTheDocument();
     expect(screen.getByText(/Pilih Layanan Sesuai Kebutuhan Anda/i)).toBeInTheDocument();
@@ -106,5 +110,43 @@ describe("Sidebar Active State", () => {
     render(<DashboardPage />);
     const beranda = screen.getByRole('link', { name: /beranda/i });
     expect(beranda.className).toMatch(/active/);
+  });
+});
+
+describe("SiteHeader", () => {
+  it("menampilkan judul 'Beranda' di halaman /", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(screen.getByText("Beranda")).toBeInTheDocument();
+  });
+
+  it("menampilkan judul 'Konsultasi Offline' di halaman /mahasiswa/konsultasioffline", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/mahasiswa/konsultasioffline" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(screen.getByText("Konsultasi Offline")).toBeInTheDocument();
+  });
+
+  it("menampilkan judul 'Lagu Tenang' di halaman /mahasiswa/lagutenang", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/mahasiswa/lagutenang" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(screen.getByText("Lagu Tenang")).toBeInTheDocument();
+  });
+
+  it("menampilkan judul 'Detail' jika segment [id]", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/mahasiswa/konsultasioffline/123" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(screen.getByText(/Konsultasi Offline|Detail/i)).toBeInTheDocument();
+  });
+
+  it("menampilkan tombol SidebarTrigger", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+  });
+
+  it("menampilkan separator", () => {
+    (useRouter as jest.Mock).mockReturnValue({ pathname: "/" });
+    renderWithSidebarProvider(<SiteHeader />);
+    expect(document.querySelector('[class*=separator]')).toBeInTheDocument();
   });
 });

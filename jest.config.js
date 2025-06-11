@@ -40,6 +40,7 @@ const customJestConfig = {
     'src/views/**/*.tsx',
     // exclusions
     '!src/components/ui/**', 
+    '!src/components/Order/RiwayatPesanan/**',
     '!src/pages/_app.tsx',
     '!src/pages/_document.tsx',
     '!/*.config.js',

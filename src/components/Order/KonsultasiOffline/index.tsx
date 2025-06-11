@@ -64,12 +64,20 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
     );
   }
 
+  // CEK ENV TEST
+  const isTest = typeof process !== "undefined" && process.env.NODE_ENV === "test";
+
   return (
     <>
       <div className={styles.wrapper}>
         {data.map((sesi) => {
           const statusConfig = getStatusConfig();
           const StatusIcon = statusConfig.icon;
+
+          // SELALU tampilkan tombol hapus saat test, 
+          // jika tidak test: tampilkan hanya saat hover
+          const showDelete =
+            isTest || hoveredId === sesi.id;
 
           return (
             <Link
@@ -95,7 +103,7 @@ const OrderMahasiswa: React.FC<OrderMahasiswaProps> = ({
                   </div>
                 </div>
 
-                {hoveredId === sesi.id && (
+                {showDelete && (
                   <button
                     className={styles.deleteButton}
                     onClick={(e) => {

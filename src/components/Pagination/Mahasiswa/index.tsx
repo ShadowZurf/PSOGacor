@@ -23,8 +23,9 @@ export default function PaginationComponent({
         <Pagination.Prev
           onClick={() => onPageChange(Math.max(1, currentPage - 1))}
           disabled={currentPage === 1}
+          aria-label="Previous"
         >
-          &lt; Previous
+          Previous
         </Pagination.Prev>
         {[...Array(totalPages)].map((_, index) => (
           <Pagination.Item
@@ -38,8 +39,9 @@ export default function PaginationComponent({
         <Pagination.Next
           onClick={() => onPageChange(Math.min(totalPages, currentPage + 1))}
           disabled={currentPage === totalPages}
+          aria-label="Next"
         >
-          Next &gt;
+          Next
         </Pagination.Next>
       </Pagination>
     </div>

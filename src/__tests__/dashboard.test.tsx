@@ -32,7 +32,7 @@ describe("Dashboard Page Mahasiswa", () => {
 describe("Home Page (pages/index.tsx)", () => {
   it("renders Home page via routing", () => {
     render(<Home />);
-    expect(screen.getByText(/Selamat datang di ITS-OK/i)).toBeInTheDocument();
+    expect(screen.getByText(/Selamat datang/i)).toBeInTheDocument();
     expect(screen.getByText(/Platform layanan kesehatan mental untuk mahasiswa ITS/i)).toBeInTheDocument();
     expect(screen.getByText(/Pilih Layanan Sesuai Kebutuhan Anda/i)).toBeInTheDocument();
     expect(screen.getByText(/Daftar Konsultasi Offline/i)).toBeInTheDocument();

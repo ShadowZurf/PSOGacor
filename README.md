@@ -90,6 +90,15 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
 
+### Docker
+
+
+### GCP
+
+### Monitoring
+
+
+
 ## Penjelasan Pipeline
 ### Continuous Integration
 1. Konfigurasi GitHub Actions workflow
@@ -273,28 +282,6 @@ Di tahap ini, source code aplikasi dibuild menjadi image Docker menggunakan peri
 </pre>
 Tahap akhir dari pipeline CD adalah mendeploy image yang sudah dibuild ke Cloud Run. Aplikasi akan dijalankan di cloud, dengan konfigurasi agar bisa diakses publik (--allow-unauthenticated). Ini menandai versi terbaru aplikasi telah berhasil masuk ke lingkungan produksi.
 
-## Anggota Kelompok
-- Khalid Wildan Lazuardi (5026221023)
-- Ahmad Nabil (5026221027)
-- Mochammad Afandi Wirawan (5026221127)
-- Arya Putra Tsabitah Firjatulloh (5026221172)
-
-## How to Run the code
-- Open your terminal and navigates to your projects folder, then run the following command. Buka terminal dan masuk ke dalam folder proyek mu, lalu jalankan command di bawah
-```bash
-git clone https://github.com/ShadowZurf/PSOGacor.git
-```
-- Go to your project directory and make sure the files are there. Masuk ke directory dari project yang tadi kamu buat dan pastikan ada file-file nya disana.
-- Open your terminal again and install our depedencies, run this following command. Buka terminalmu (command prompt) dan install depedencies kami dengan menjalankan command di bawah.
-```bash
-npm install
-```
-- Configure the environment variables. In this project, we use firebase and firestore. Perhatikan environment variables project ini, dalam projek ini kami menggunakan firebase dan firestore.
-- Open your terminal again and run locally the code with the following command. Buka terminal kembali dan run code pada local dengan command di bawah ini.
-```bash
-npm run dev
-```
-
 ## Error, Troubleshoot, and Improvement
 
 - **Permasalahan 1:** Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
@@ -315,3 +302,25 @@ npm run dev
 - **Permasalahan 4:** Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.
 
 - **Solusi 4:** Kami memperbaiki konfigurasi file sonar-project.properties dan menyesuaikan output coverage dari Jest agar kompatibel dengan SonarCloud, contohnya adalah mengatur peraturan coverage dan ignorenya untuk sonar ini. Sekarang, SonarCloud dapat mendeteksi code coverage dan hasil linting secara otomatis setiap pipeline berjalan.
+
+## How to Run the code
+- Open your terminal and navigates to your projects folder, then run the following command. Buka terminal dan masuk ke dalam folder proyek mu, lalu jalankan command di bawah
+```bash
+git clone https://github.com/ShadowZurf/PSOGacor.git
+```
+- Go to your project directory and make sure the files are there. Masuk ke directory dari project yang tadi kamu buat dan pastikan ada file-file nya disana.
+- Open your terminal again and install our depedencies, run this following command. Buka terminalmu (command prompt) dan install depedencies kami dengan menjalankan command di bawah.
+```bash
+npm install
+```
+- Configure the environment variables. In this project, we use firebase and firestore. Perhatikan environment variables project ini, dalam projek ini kami menggunakan firebase dan firestore.
+- Open your terminal again and run locally the code with the following command. Buka terminal kembali dan run code pada local dengan command di bawah ini.
+```bash
+npm run dev
+```
+
+## Anggota Kelompok
+- Khalid Wildan Lazuardi (5026221023)
+- Ahmad Nabil (5026221027)
+- Mochammad Afandi Wirawan (5026221127)
+- Arya Putra Tsabitah Firjatulloh (5026221172)

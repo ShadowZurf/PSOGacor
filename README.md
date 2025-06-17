@@ -62,7 +62,7 @@ Next.js adalah framework berbasis React yang dikembangkan oleh Vercel, dirancang
 
 ESLint adalah alat statis untuk menganalisis kode JavaScript dan TypeScript guna menemukan serta memperbaiki masalah yang berkaitan dengan kualitas dan konsistensi penulisan kode. Dalam proyek ini, digunakan NextLint, yaitu konfigurasi ESLint yang telah disesuaikan secara default oleh Next.js. NextLint membantu memastikan bahwa kode yang ditulis mengikuti standar dan praktik terbaik yang direkomendasikan oleh Next.js, serta memudahkan pengembang dalam menjaga keteraturan struktur kode dan mencegah potensi bug sejak dini.
 ### Jest
-<p align="center"><img src="imagesreadme/jest.png"/></p>
+<p align="center"><img src="imagesreadme/jest.png" width="250"/></p>
 
 Jest adalah framework pengujian JavaScript yang digunakan untuk melakukan unit testing secara efisien dan cepat. Dalam proyek ini, Jest dimanfaatkan untuk memastikan bahwa setiap fungsi atau komponen aplikasi berjalan sesuai dengan yang diharapkan melalui serangkaian pengujian terautomasi. Jest mendukung fitur seperti mocking, snapshot testing, dan coverage report, yang membantu dalam mendeteksi bug lebih awal serta menjaga kestabilan aplikasi selama proses pengembangan. Integrasi Jest juga berjalan mulus dengan framework seperti Next.js, sehingga cocok digunakan dalam alur pengujian proyek ini.
 ### SonarCloud
@@ -94,7 +94,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Developer kemudian mengerjakan fitur pada branch yang sesuai dengan issue yang telah dibuat, sehingga pengelolaan kode lebih terstruktur.
 8. Dalam proyek PSOGacor, branch dibagi menjadi dua bagian utama: master sebagai branch utama yang berisi kode siap rilis, dan branch fitur yang digunakan untuk mengembangkan atau memodifikasi fitur tertentu.
 9. Setelah pengembangan fitur selesai dan telah diuji, dilakukan pull request dari branch fitur ke branch main agar perubahan dapat digabungkan ke versi utama aplikasi.
-![Contoh Foto](imagesreadme/hasilgithub.png)
+<p align="center"><img src="imagesreadme/hasilgithub.png"/></p>
 
 ### GitHub Actions
 1. Untuk menggunakan GitHub Actions, ikuti panduan pada tautan berikut: https://docs.github.com/en/actions/writing-workflows/quickstart.
@@ -103,7 +103,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 4. Dalam proyek ini kami membuat 2 file YAML, yaitu ci.yml dan cd.yml
 5. Pipeline ci.yml dijalankan secara otomatis ketika terdapat pull request dari branch fitur ke branch main, dan akan menjalankan proses pengecekan ESLint, Jest, dan SonarCloud.
 6. Pipeline cd.yml dijalankan secara otomatis ketika ci berhasil dijalankan. Disini akan dilakukan keseluruhan konfigurasi GCP dan Docker.
-![Contoh Foto](imagesreadme/hasilaction.png)
+<p align="center"><img src="imagesreadme/hasilaction.png"/></p>
 
 ### Next.js
 1. Pertama install Node.js di VSCode. Cek versi di terminal dengan node -v dan npm -v.
@@ -118,7 +118,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Kemudian push ke GitHub dengan:
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
-![Contoh Foto](imagesreadme/hasilnext.png)
+<p align="center"><img src="imagesreadme/hasilnext.png"/></p>
 
 ### Firebase
 1. Membuka https://console.firebase.google.com untuk membuat project baru sebagai backend dari aplikasi.
@@ -131,7 +131,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 ```
 npm install firebase
 ```
-![Contoh Foto](imagesreadme/hasilfirebase.png)
+<p align="center"><img src="imagesreadme/hasilfirebase.png"/></p>
 
 ### Firestore
 1. Buka kembali Firebase Console, lalu pilih menu “Firestore Database” dari sidebar kiri.
@@ -151,7 +151,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 ```
-![Contoh Foto](imagesreadme/hasilfirestore.png)
+<p align="center"><img src="imagesreadme/hasilfirestore.png"/></p>
 
 ### Docker
 1. Download dan Install Docker Desktop
@@ -213,21 +213,21 @@ Akses aplikasi melalui browser:
 ```
 http://localhost:8080
 ```
-![Contoh Foto](imagesreadme/hasildocker.jpg)
+<p align="center"><img src="imagesreadme/hasildocker.jpg"/></p>
 
 ### GCP
 1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.
 2. Setelah itu, masuk ke halaman cloud run dan artifact registery untuk meng enable kedua halaman itu. Cloud run digunakan untuk mendeploy dan mengatur mulai dari server yang akan digunakan, port, memory, security, dan lainnya. Sementara, untuk artifact registery digunakan untuk mempush docker image local yang sebelumnya dibuat, ke docker google cloud yang berhubungan dengan cloud run itu juga.
 3. Selanjutnya adalah konfigurasi pada halaman IAM & Admin. Disini dilakukan untuk menambah service account utama yang dapat digunakan agar pipeline dapat melakukan keseluruhan proses pada GCP melalui credentials (pada CD). Hal ini sangat diperlukan karena kami melakukan otomasi proses CI/CD.
 4. Setelah melakukan konfigurasi ketiga hal tersebut, pastikan CD terautentikasi dengan baik oleh konfigurasi yang ada, mulai dari nama, credentials, token, id, dan lainnya. Hal ini harus dipastikan benar supaya GCP berhasil mendeploy aplikasi kita ke server.
-![Contoh Foto](imagesreadme/hasilgcp.png)
+<p align="center"><img src="imagesreadme/hasilgcp.png"/></p>
 
 ### Monitoring
 1. Setelah pipeline diatur dengan baik dan konfigurasi server diatur dengan baik sehingga aplikasi dapat dijalankan di server. Monitoring dapat dilakukan dengan beberapa tools berbeda, namun pada kasus ini kami menggunakan monitoring GCP.
 2. Monitoring yang dilakukan yang pertama dengan mengatur dashboard agar bisa langsung terlihat monitoring sesuai pilihan contohnya seperti request latency by service atau request count by service.
 3. Setelah dashboard diatur, disini kita dapat mengatur metric apa saja yang mau kita explore, contohnya adalah log explorer. Ini digunakan agar kita bisa memonitoring log dari keseluruhan resource project yang ada di google cloud. Disini kita bisa analisa performa/traffic.
 4. Setelah mengatur apa-apa saja yang ingin di monitoring, disini dilakukan konfigurasi untuk alerting, agar nantinya kita bisa langsung mengetahui jika ada masalah dari keseluruhan proses project sesuai dengan monitoringnya tadi. Contohnya, kami mengatur agar ketika request count tidak sesuai threshold, maka akan langsung diinfokan melalui gmail.
-![Contoh Foto](imagesreadme/hasilmonitor.png)
+<p align="center"><img src="imagesreadme/hasilmonitor.png"/></p>
 
 ## Penjelasan Pipeline
 ### Continuous Integration
@@ -416,38 +416,35 @@ Tahap akhir dari pipeline CD adalah mendeploy image yang sudah dibuild ke Cloud 
 
 - **Permasalahan 1:** Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
 
-![Contoh Foto](imagesreadme/masalaheslint.png)
+<p align="center"><img src="imagesreadme/masalaheslint.png"/></p>
 
 - **Solusi 1:** Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.
 
-![Contoh Foto](imagesreadme/solusieslint.png)
-
+<p align="center"><img src="imagesreadme/solusieslint.png"/></p>
 
 - **Permasalahan 2:** Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
 
-![Contoh Foto](imagesreadme/masalahcicd.png)
+<p align="center"><img src="imagesreadme/masalahcicd.png"/></p>
 
 - **Solusi 2:** Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
 
-![Contoh Foto](imagesreadme/solusicicd.png)
-
+<p align="center"><img src="imagesreadme/solusicicd.png"/></p>
 
 - **Permasalahan 3:** Konfigurasi Jest awalnya bermasalah karena versi dependency tidak cocok dan beberapa package tidak kompatibel, sehingga testing gagal berjalan. Kami juga sempat kesulitan membuat coverage yang valid dan file test bisa dieksekusi dengan benar.
 
-![Contoh Foto](imagesreadme/masalahjest.png)
+<p align="center"><img src="imagesreadme/masalahjest.png"/></p>
 
 - **Solusi 3:** Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.
 
-![Contoh Foto](imagesreadme/solusijest.png)
-
+<p align="center"><img src="imagesreadme/solusijest.png"/></p>
 
 - **Permasalahan 4:** Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.
 
-![Contoh Foto](imagesreadme/masalahsonar.png)
+<p align="center"><img src="imagesreadme/masalahsonar.png"/></p>
 
 - **Solusi 4:** Kami memperbaiki konfigurasi file sonar-project.properties dan menyesuaikan output coverage dari Jest agar kompatibel dengan SonarCloud, contohnya adalah mengatur peraturan coverage dan ignorenya untuk sonar ini. Sekarang, SonarCloud dapat mendeteksi code coverage dan hasil linting secara otomatis setiap pipeline berjalan.
 
-![Contoh Foto](imagesreadme/solusisonar.png)
+<p align="center"><img src="imagesreadme/solusisonar.png"/></p>
 
 ## How to Run the code
 - Open your terminal and navigates to your projects folder, then run the following command. Buka terminal dan masuk ke dalam folder proyek mu, lalu jalankan command di bawah
@@ -464,9 +461,12 @@ npm install
 ```bash
 npm run dev
 ```
+## Project Planning 
+- Link WBS : https://tekan.id/WBSPSOKel10
+- Link Github Project : https://github.com/users/ShadowZurf/projects/2
 
 ## Anggota Kelompok
-- Khalid Wildan Lazuardi (5026221023)
-- Ahmad Nabil (5026221027)
-- Mochammad Afandi Wirawan (5026221127)
-- Arya Putra Tsabitah Firjatulloh (5026221172)
+- Khalid Wildan Lazuardi (5026221023) / khalidlazuardi52@gmail.com
+- Ahmad Nabil (5026221027) / ahmadnabilassegaf7@gmail.com
+- Mochammad Afandi Wirawan (5026221127) / wirawanafandi@gmail.com
+- Arya Putra Tsabitah Firjatulloh (5026221172) / putraarya384@gmail.com

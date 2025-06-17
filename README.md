@@ -40,7 +40,7 @@ Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memi
 
 GitHub merupakan platform berbasis web yang memanfaatkan Git sebagai sistem version control untuk mengelola source code serta memantau setiap perubahan yang terjadi dalam proses pengembangan perangkat lunak. Dalam proyek ini, kami juga menggunakan fitur GitHub Project untuk membantu manajemen tugas, dengan memanfaatkan template yang telah disediakan. Pengelolaan proyek dilakukan melalui metode kanban board, yang memberikan visualisasi progres tugas secara jelas dan terstruktur.
 ### GitHub Actions
-<p align="center"><img src="imagesreadme/githubaction.png" width="300"/></p>
+<p align="center"><img src="imagesreadme/githubaction.png" width="350"/></p>
 
 GitHub Actions adalah fitur otomatisasi bawaan di GitHub yang memungkinkan kamu untuk menjalankan workflow secara otomatis berdasarkan event tertentu, seperti push, pull request, atau merge.
 GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integration dan Continuous Deployment/Delivery) secara langsung di dalam ekosistem GitHub, tanpa memerlukan layanan eksternal.
@@ -50,20 +50,19 @@ GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integrat
 2. Continuous Deployment/Delivery (CD)
     - Setelah kode lolos pengujian, GitHub Actions dapat secara otomatis men-deploy ke server dan publish aplikasi ke staging atau production environment.
 ### VSCode
-<p align="center"><img src="imagesreadme/vscode.png" width="300"/></p>
+<p align="center"><img src="imagesreadme/vscode.png" width="200"/></p>
 
 Visual Studio Code (VSCode) adalah code editor yang digunakan sebagai development environment dalam proyek ini. VSCode menyediakan berbagai fitur pendukung pengembangan seperti syntax highlighting, IntelliSense (auto-complete pintar), integrasi Git, serta dukungan terhadap berbagai ekstensi seperti ESLint, Prettier, dan Docker, yang sangat membantu dalam meningkatkan produktivitas dan menjaga kualitas kode. Selain itu, tampilannya yang ringan namun powerful membuatnya cocok untuk kolaborasi dan pengembangan lintas platform secara efisien.
 ### Next.js
-![Contoh Foto](imagesreadme/nextjs.png)
+<p align="center"><img src="imagesreadme/nextjs.png"/></p>
 
 Next.js adalah framework berbasis React yang dikembangkan oleh Vercel, dirancang untuk membangun aplikasi web modern dengan performa tinggi. Framework ini mendukung berbagai metode rendering seperti Server-Side Rendering (SSR), Static Site Generation (SSG), dan hybrid rendering, serta dilengkapi dengan fitur routing otomatis, optimasi kinerja, dan API bawaan. Dengan kemudahan konfigurasi dan skalabilitas yang baik, Next.js sangat cocok digunakan untuk proyek web yang membutuhkan kecepatan, SEO, dan pengelolaan struktur aplikasi yang efisien.
 ### ESLint
-![Contoh Foto](imagesreadme/eslint.png)
+<p align="center"><img src="imagesreadme/eslint.png"/></p>
 
 ESLint adalah alat statis untuk menganalisis kode JavaScript dan TypeScript guna menemukan serta memperbaiki masalah yang berkaitan dengan kualitas dan konsistensi penulisan kode. Dalam proyek ini, digunakan NextLint, yaitu konfigurasi ESLint yang telah disesuaikan secara default oleh Next.js. NextLint membantu memastikan bahwa kode yang ditulis mengikuti standar dan praktik terbaik yang direkomendasikan oleh Next.js, serta memudahkan pengembang dalam menjaga keteraturan struktur kode dan mencegah potensi bug sejak dini.
 ### Jest
-
-![Contoh Foto](imagesreadme/jest.png)
+<p align="center"><img src="imagesreadme/jest.png"/></p>
 
 Jest adalah framework pengujian JavaScript yang digunakan untuk melakukan unit testing secara efisien dan cepat. Dalam proyek ini, Jest dimanfaatkan untuk memastikan bahwa setiap fungsi atau komponen aplikasi berjalan sesuai dengan yang diharapkan melalui serangkaian pengujian terautomasi. Jest mendukung fitur seperti mocking, snapshot testing, dan coverage report, yang membantu dalam mendeteksi bug lebih awal serta menjaga kestabilan aplikasi selama proses pengembangan. Integrasi Jest juga berjalan mulus dengan framework seperti Next.js, sehingga cocok digunakan dalam alur pengujian proyek ini.
 ### SonarCloud

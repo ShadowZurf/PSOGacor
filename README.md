@@ -1,4 +1,5 @@
 # ITS-OK | Final Project Perencanaan dan Pengembangan Perangkat Lunak (PPPL)
+![Contoh Foto](imagesreadme/foto_app.png)
 ## Product Description 
 ### Latar Belakang
 Mahasiswa di Indonesia, termasuk di Institut Teknologi Sepuluh Nopember (ITS), menghadapi tantangan besar dalam menjaga kesehatan mental mereka. Tingginya tingkat stres akademik, tekanan sosial, serta kurangnya akses ke layanan kesehatan mental yang cepat dan berkualitas menjadi faktor utama yang mempersulit mahasiswa untuk mendapatkan bantuan yang mereka butuhkan. Saat ini, dukungan psikologis yang tersedia di kampus masih terbatas, baik dari segi jumlah tenaga profesional maupun kemudahan akses terhadap layanan tersebut.

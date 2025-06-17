@@ -22,7 +22,7 @@ export default function MahasiswaDashboardPage() {
           <section className={styles.greetingSection}>
             <Container fluid="xl" className={styles.sectionContainer}>
               <h1 className={`${styles.greeting} ${styles.greetingAnimated}`}>
-                Selamat datang para pasien penyakit mental ITS-OK
+                Selamat datang di ITS-OK
               </h1>
               <p className={`${styles.role} ${styles.greetingAnimated} ${styles.greetingAnimatedDelay}`}>
                 Platform layanan kesehatan mental untuk mahasiswa ITS

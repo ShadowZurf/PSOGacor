@@ -1,5 +1,8 @@
 # ITS-OK | Final Project Perencanaan dan Pengembangan Perangkat Lunak (PPPL)
 ![Contoh Foto](imagesreadme/foto_app.png)
+<p align="center">
+  <a href="https://tekan.id/ITSOK" target="_blank">Access ITS-OK Here!</a>
+</p>
 ## Product Description 
 ### Latar Belakang
 Mahasiswa di Indonesia, termasuk di Institut Teknologi Sepuluh Nopember (ITS), menghadapi tantangan besar dalam menjaga kesehatan mental mereka. Tingginya tingkat stres akademik, tekanan sosial, serta kurangnya akses ke layanan kesehatan mental yang cepat dan berkualitas menjadi faktor utama yang mempersulit mahasiswa untuk mendapatkan bantuan yang mereka butuhkan. Saat ini, dukungan psikologis yang tersedia di kampus masih terbatas, baik dari segi jumlah tenaga profesional maupun kemudahan akses terhadap layanan tersebut.
@@ -32,8 +35,10 @@ Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memi
     - Firestore
     - Google Cloud Platform
 ### GitHub
+![Contoh Foto](imagesreadme/github.jpeg)
 GitHub merupakan platform berbasis web yang memanfaatkan Git sebagai sistem version control untuk mengelola source code serta memantau setiap perubahan yang terjadi dalam proses pengembangan perangkat lunak. Dalam proyek ini, kami juga menggunakan fitur GitHub Project untuk membantu manajemen tugas, dengan memanfaatkan template yang telah disediakan. Pengelolaan proyek dilakukan melalui metode kanban board, yang memberikan visualisasi progres tugas secara jelas dan terstruktur.
 ### GitHub Actions
+![Contoh Foto](imagesreadme/githubaction.png)
 GitHub Actions adalah fitur otomatisasi bawaan di GitHub yang memungkinkan kamu untuk menjalankan workflow secara otomatis berdasarkan event tertentu, seperti push, pull request, atau merge.
 GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integration dan Continuous Deployment/Delivery) secara langsung di dalam ekosistem GitHub, tanpa memerlukan layanan eksternal.
 1. Continuous Integration (CI)
@@ -42,20 +47,28 @@ GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integrat
 2. Continuous Deployment/Delivery (CD)
     - Setelah kode lolos pengujian, GitHub Actions dapat secara otomatis men-deploy ke server dan publish aplikasi ke staging atau production environment.
 ### VSCode
+![Contoh Foto](imagesreadme/vscode.png)
 Visual Studio Code (VSCode) adalah code editor yang digunakan sebagai development environment dalam proyek ini. VSCode menyediakan berbagai fitur pendukung pengembangan seperti syntax highlighting, IntelliSense (auto-complete pintar), integrasi Git, serta dukungan terhadap berbagai ekstensi seperti ESLint, Prettier, dan Docker, yang sangat membantu dalam meningkatkan produktivitas dan menjaga kualitas kode. Selain itu, tampilannya yang ringan namun powerful membuatnya cocok untuk kolaborasi dan pengembangan lintas platform secara efisien.
 ### Next.js
+![Contoh Foto](imagesreadme/nextjs.png)
 Next.js adalah framework berbasis React yang dikembangkan oleh Vercel, dirancang untuk membangun aplikasi web modern dengan performa tinggi. Framework ini mendukung berbagai metode rendering seperti Server-Side Rendering (SSR), Static Site Generation (SSG), dan hybrid rendering, serta dilengkapi dengan fitur routing otomatis, optimasi kinerja, dan API bawaan. Dengan kemudahan konfigurasi dan skalabilitas yang baik, Next.js sangat cocok digunakan untuk proyek web yang membutuhkan kecepatan, SEO, dan pengelolaan struktur aplikasi yang efisien.
 ### ESLint
+![Contoh Foto](imagesreadme/eslint.png)
 ESLint adalah alat statis untuk menganalisis kode JavaScript dan TypeScript guna menemukan serta memperbaiki masalah yang berkaitan dengan kualitas dan konsistensi penulisan kode. Dalam proyek ini, digunakan NextLint, yaitu konfigurasi ESLint yang telah disesuaikan secara default oleh Next.js. NextLint membantu memastikan bahwa kode yang ditulis mengikuti standar dan praktik terbaik yang direkomendasikan oleh Next.js, serta memudahkan pengembang dalam menjaga keteraturan struktur kode dan mencegah potensi bug sejak dini.
 ### Jest
+![Contoh Foto](imagesreadme/jest.png)
 Jest adalah framework pengujian JavaScript yang digunakan untuk melakukan unit testing secara efisien dan cepat. Dalam proyek ini, Jest dimanfaatkan untuk memastikan bahwa setiap fungsi atau komponen aplikasi berjalan sesuai dengan yang diharapkan melalui serangkaian pengujian terautomasi. Jest mendukung fitur seperti mocking, snapshot testing, dan coverage report, yang membantu dalam mendeteksi bug lebih awal serta menjaga kestabilan aplikasi selama proses pengembangan. Integrasi Jest juga berjalan mulus dengan framework seperti Next.js, sehingga cocok digunakan dalam alur pengujian proyek ini.
 ### SonarCloud
+![Contoh Foto](imagesreadme/sonarcloud.png)
 SonarCloud adalah layanan berbasis cloud yang digunakan untuk menganalisis kualitas kode secara otomatis dengan fokus pada aspek seperti bugs, code smells, vulnerabilities, dan code coverage. Dalam proyek ini, SonarCloud digunakan setelah proses testing dengan Jest untuk melakukan pemeriksaan lanjutan terhadap kualitas dan keamanan kode secara menyeluruh. Integrasinya dengan GitHub dan GitHub Actions memungkinkan analisis berjalan otomatis setiap kali ada perubahan kode, sehingga membantu tim dalam menjaga standar kualitas, mengurangi risiko kesalahan di production, serta memantau performa kode secara berkelanjutan.
 ### Docker
+![Contoh Foto](imagesreadme/docker.png)
 Docker adalah platform open-source yang digunakan untuk membuat, menjalankan, dan mengelola aplikasi dalam wadah (container) yang ringan dan terisolasi. Dalam konteks pengembangan perangkat lunak, Docker memungkinkan pengembang untuk membungkus aplikasi beserta semua dependensi dan konfigurasi yang dibutuhkan ke dalam satu container, sehingga aplikasi dapat dijalankan dengan konsisten di berbagai lingkungan. Dengan menggunakan Docker, proses deployment menjadi lebih cepat, reproducible, dan mudah diintegrasikan ke dalam pipeline CI/CD, termasuk dalam proyek ini untuk memastikan bahwa aplikasi dapat dijalankan secara stabil dan efisien di berbagai tahap pengembangan maupun produksi.
 ### Firestore
+![Contoh Foto](imagesreadme/firestore.png)
 Firestore adalah layanan basis data NoSQL berbasis cloud yang dikembangkan oleh Google sebagai bagian dari platform Firebase. Firestore dirancang untuk menyimpan dan menyinkronkan data secara real-time, serta mendukung struktur data berbasis dokumen dan koleksi yang fleksibel. Dalam proyek ini, Firestore digunakan sebagai backend untuk menyimpan data aplikasi, seperti informasi pengguna, catatan, atau konfigurasi sistem, dengan keunggulan akses data yang cepat, skalabilitas tinggi, dan kemampuan integrasi langsung dengan layanan Google lainnya. Selain itu, Firestore juga mendukung operasi offline dan real-time update, sehingga sangat cocok untuk aplikasi modern berbasis web maupun mobile.
 ### Google Cloud Platform (GCP)
+![Contoh Foto](imagesreadme/gcp.png)
 Google Cloud Platform (GCP) adalah layanan cloud dari Google yang menyediakan infrastruktur dan alat untuk menyimpan, mengelola, serta menjalankan aplikasi secara online. Dalam konteks deployment, GCP memungkinkan pengembang untuk menyebarkan aplikasi ke cloud melalui berbagai layanan seperti App Engine (platform-as-a-service untuk aplikasi web), Cloud Run (untuk menjalankan container secara serverless), atau Compute Engine (virtual machine dengan kontrol penuh). Proses deployment di GCP umumnya melibatkan pembuatan project, konfigurasi file deployment (seperti app.yaml untuk App Engine), lalu menggunakan perintah seperti gcloud app deploy untuk mengunggah dan menjalankan aplikasi secara otomatis di lingkungan production.
 
 ## Langkah Proses
@@ -70,6 +83,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Developer kemudian mengerjakan fitur pada branch yang sesuai dengan issue yang telah dibuat, sehingga pengelolaan kode lebih terstruktur.
 8. Dalam proyek PSOGacor, branch dibagi menjadi dua bagian utama: master sebagai branch utama yang berisi kode siap rilis, dan branch fitur yang digunakan untuk mengembangkan atau memodifikasi fitur tertentu.
 9. Setelah pengembangan fitur selesai dan telah diuji, dilakukan pull request dari branch fitur ke branch main agar perubahan dapat digabungkan ke versi utama aplikasi.
+![Contoh Foto](imagesreadme/hasilgithub.png)
 ### GitHub Actions
 1. Untuk menggunakan GitHub Actions, ikuti panduan pada tautan berikut: https://docs.github.com/en/actions/writing-workflows/quickstart.
 2. Buat folder .github/workflows di dalam repository sebagai tempat menyimpan file konfigurasi workflow.
@@ -77,6 +91,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 4. Dalam proyek ini kami membuat 2 file YAML, yaitu ci.yml dan cd.yml
 5. Pipeline ci.yml dijalankan secara otomatis ketika terdapat pull request dari branch fitur ke branch main, dan akan menjalankan proses pengecekan ESLint, Jest, dan SonarCloud.
 6. Pipeline cd.yml dijalankan secara otomatis ketika ci berhasil dijalankan. Disini akan dilakukan keseluruhan konfigurasi GCP dan Docker.
+![Contoh Foto](imagesreadme/hasilaction.png)
 ### Next.js
 1. Pertama install Node.js di VSCode. Cek versi di terminal dengan node -v dan npm -v.
 2. Kemudian buat project baru dengan membuka terminal di VSCode, lalu jalankan npx create-next-app@latest nama-proyek.
@@ -90,6 +105,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Kemudian push ke GitHub dengan:
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
+![Contoh Foto](imagesreadme/hasilnext.png)
 ### Firebase
 1. Membuka https://console.firebase.google.com untuk membuat project baru sebagai backend dari aplikasi.
 2. Login menggunakan akun Google yang dimiliki, lalu klik tombol “Add project” dan ikuti panduan pembuatan project seperti pengisian nama dan pengaturan Google Analytics.
@@ -101,6 +117,7 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 ```
 npm install firebase
 ```
+![Contoh Foto](imagesreadme/hasilfirebase.png)
 ### Firestore
 1. Buka kembali Firebase Console, lalu pilih menu “Firestore Database” dari sidebar kiri.
 2. Klik tombol “Create database”, pilih mode production atau test, lalu pilih lokasi server sesuai kebutuhan (misalnya Asia Tenggara/Singapura).
@@ -119,6 +136,7 @@ import {
   getDocs,
 } from "firebase/firestore";
 ```
+![Contoh Foto](imagesreadme/hasilfirestore.png)
 ### Docker
 1. Download dan Install Docker Desktop
 - Kunjungi: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
@@ -179,17 +197,19 @@ Akses aplikasi melalui browser:
 ```
 http://localhost:8080
 ```
+![Contoh Foto](imagesreadme/hasildocker.jpg)
 ### GCP
 1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.
 2. Setelah itu, masuk ke halaman cloud run dan artifact registery untuk meng enable kedua halaman itu. Cloud run digunakan untuk mendeploy dan mengatur mulai dari server yang akan digunakan, port, memory, security, dan lainnya. Sementara, untuk artifact registery digunakan untuk mempush docker image local yang sebelumnya dibuat, ke docker google cloud yang berhubungan dengan cloud run itu juga.
 3. Selanjutnya adalah konfigurasi pada halaman IAM & Admin. Disini dilakukan untuk menambah service account utama yang dapat digunakan agar pipeline dapat melakukan keseluruhan proses pada GCP melalui credentials (pada CD). Hal ini sangat diperlukan karena kami melakukan otomasi proses CI/CD.
-4. Setelah melakukan konfigurasi ketiga hal tersebut, pastikan CD terautentikasi dengan baik oleh konfigurasi yang ada, mulai dari nama, credentials, token, id, dan lainnya. Hal ini harus dipastikan benar supaya GCP berhasil mendeploy aplikasi kita ke server.    
+4. Setelah melakukan konfigurasi ketiga hal tersebut, pastikan CD terautentikasi dengan baik oleh konfigurasi yang ada, mulai dari nama, credentials, token, id, dan lainnya. Hal ini harus dipastikan benar supaya GCP berhasil mendeploy aplikasi kita ke server.
+![Contoh Foto](imagesreadme/hasilgcp.png)
 ### Monitoring
 1. Setelah pipeline diatur dengan baik dan konfigurasi server diatur dengan baik sehingga aplikasi dapat dijalankan di server. Monitoring dapat dilakukan dengan beberapa tools berbeda, namun pada kasus ini kami menggunakan monitoring GCP.
 2. Monitoring yang dilakukan yang pertama dengan mengatur dashboard agar bisa langsung terlihat monitoring sesuai pilihan contohnya seperti request latency by service atau request count by service.
 3. Setelah dashboard diatur, disini kita dapat mengatur metric apa saja yang mau kita explore, contohnya adalah log explorer. Ini digunakan agar kita bisa memonitoring log dari keseluruhan resource project yang ada di google cloud. Disini kita bisa analisa performa/traffic.
 4. Setelah mengatur apa-apa saja yang ingin di monitoring, disini dilakukan konfigurasi untuk alerting, agar nantinya kita bisa langsung mengetahui jika ada masalah dari keseluruhan proses project sesuai dengan monitoringnya tadi. Contohnya, kami mengatur agar ketika request count tidak sesuai threshold, maka akan langsung diinfokan melalui gmail.
-
+![Contoh Foto](imagesreadme/hasilmonitor.png)
 
 ## Penjelasan Pipeline
 ### Continuous Integration
@@ -377,23 +397,31 @@ Tahap akhir dari pipeline CD adalah mendeploy image yang sudah dibuild ke Cloud 
 ## Error, Troubleshoot, and Improvement
 
 - **Permasalahan 1:** Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
+![Contoh Foto](imagesreadme/masalaheslint.png)
 
 - **Solusi 1:** Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.
+![Contoh Foto](imagesreadme/solusieslint.png)
 
 
 - **Permasalahan 2:** Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
+![Contoh Foto](imagesreadme/masalahcicd.png)
 
 - **Solusi 2:** Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
+![Contoh Foto](imagesreadme/solusicicd.png)
 
 
 - **Permasalahan 3:** Konfigurasi Jest awalnya bermasalah karena versi dependency tidak cocok dan beberapa package tidak kompatibel, sehingga testing gagal berjalan. Kami juga sempat kesulitan membuat coverage yang valid dan file test bisa dieksekusi dengan benar.
+![Contoh Foto](imagesreadme/masalahjest.png)
 
 - **Solusi 3:** Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.
+![Contoh Foto](imagesreadme/solusijest.png)
 
 
 - **Permasalahan 4:** Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.
+![Contoh Foto](imagesreadme/masalahsonar.png)
 
 - **Solusi 4:** Kami memperbaiki konfigurasi file sonar-project.properties dan menyesuaikan output coverage dari Jest agar kompatibel dengan SonarCloud, contohnya adalah mengatur peraturan coverage dan ignorenya untuk sonar ini. Sekarang, SonarCloud dapat mendeteksi code coverage dan hasil linting secara otomatis setiap pipeline berjalan.
+![Contoh Foto](imagesreadme/solusisonar.png)
 
 ## How to Run the code
 - Open your terminal and navigates to your projects folder, then run the following command. Buka terminal dan masuk ke dalam folder proyek mu, lalu jalankan command di bawah

@@ -29,7 +29,7 @@ Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memi
     - Jest
     - Docker
     - Firestore
-    - Google Cloud Project
+    - Google Cloud Platform
 ### GitHub
 GitHub merupakan platform berbasis web yang memanfaatkan Git sebagai sistem version control untuk mengelola source code serta memantau setiap perubahan yang terjadi dalam proses pengembangan perangkat lunak. Dalam proyek ini, kami juga menggunakan fitur GitHub Project untuk membantu manajemen tugas, dengan memanfaatkan template yang telah disediakan. Pengelolaan proyek dilakukan melalui metode kanban board, yang memberikan visualisasi progres tugas secara jelas dan terstruktur.
 ### GitHub Actions
@@ -89,7 +89,6 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Kemudian push ke GitHub dengan:
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
-   
 ### Firebase
 1. Membuka https://console.firebase.google.com untuk membuat project baru sebagai backend dari aplikasi.
 2. Login menggunakan akun Google yang dimiliki, lalu klik tombol “Add project” dan ikuti panduan pembuatan project seperti pengisian nama dan pengaturan Google Analytics.
@@ -101,7 +100,6 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 ```
 npm install firebase
 ```
-
 ### Firestore
 1. Buka kembali Firebase Console, lalu pilih menu “Firestore Database” dari sidebar kiri.
 2. Klik tombol “Create database”, pilih mode production atau test, lalu pilih lokasi server sesuai kebutuhan (misalnya Asia Tenggara/Singapura).
@@ -120,7 +118,6 @@ import {
   getDocs,
 } from "firebase/firestore";
 ```
-
 ### Docker
 1. Download dan Install Docker Desktop
 - Kunjungi: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
@@ -181,7 +178,6 @@ Akses aplikasi melalui browser:
 ```
 http://localhost:8080
 ```
-
 ### GCP
 1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.
 2. Setelah itu, masuk ke halaman cloud run dan artifact registery untuk meng enable kedua halaman itu. Cloud run digunakan untuk mendeploy dan mengatur mulai dari server yang akan digunakan, port, memory, security, dan lainnya. Sementara, untuk artifact registery digunakan untuk mempush docker image local yang sebelumnya dibuat, ke docker google cloud yang berhubungan dengan cloud run itu juga.

@@ -36,11 +36,11 @@ Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memi
     - Firestore
     - Google Cloud Platform
 ### GitHub
-<p align="center"><img src="imagesreadme/github.jpeg" width="200"/></p>
+<p align="center"><img src="imagesreadme/github.jpeg" width="250"/></p>
 
 GitHub merupakan platform berbasis web yang memanfaatkan Git sebagai sistem version control untuk mengelola source code serta memantau setiap perubahan yang terjadi dalam proses pengembangan perangkat lunak. Dalam proyek ini, kami juga menggunakan fitur GitHub Project untuk membantu manajemen tugas, dengan memanfaatkan template yang telah disediakan. Pengelolaan proyek dilakukan melalui metode kanban board, yang memberikan visualisasi progres tugas secara jelas dan terstruktur.
 ### GitHub Actions
-![Contoh Foto](imagesreadme/githubaction.png)
+<p align="center"><img src="imagesreadme/githubaction.png" width="300"/></p>
 
 GitHub Actions adalah fitur otomatisasi bawaan di GitHub yang memungkinkan kamu untuk menjalankan workflow secara otomatis berdasarkan event tertentu, seperti push, pull request, atau merge.
 GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integration dan Continuous Deployment/Delivery) secara langsung di dalam ekosistem GitHub, tanpa memerlukan layanan eksternal.
@@ -50,7 +50,7 @@ GitHub Actions sangat umum digunakan untuk menerapkan CI/CD (Continuous Integrat
 2. Continuous Deployment/Delivery (CD)
     - Setelah kode lolos pengujian, GitHub Actions dapat secara otomatis men-deploy ke server dan publish aplikasi ke staging atau production environment.
 ### VSCode
-![Contoh Foto](imagesreadme/vscode.png)
+<p align="center"><img src="imagesreadme/vscode.png" width="300"/></p>
 
 Visual Studio Code (VSCode) adalah code editor yang digunakan sebagai development environment dalam proyek ini. VSCode menyediakan berbagai fitur pendukung pengembangan seperti syntax highlighting, IntelliSense (auto-complete pintar), integrasi Git, serta dukungan terhadap berbagai ekstensi seperti ESLint, Prettier, dan Docker, yang sangat membantu dalam meningkatkan produktivitas dan menjaga kualitas kode. Selain itu, tampilannya yang ringan namun powerful membuatnya cocok untuk kolaborasi dan pengembangan lintas platform secara efisien.
 ### Next.js

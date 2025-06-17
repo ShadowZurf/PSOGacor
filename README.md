@@ -8,12 +8,11 @@ Pengembangan aplikasi berbasis website bernama ITS-OK memiliki tujuan sebagai se
 ### Manfaat 
 Dengan demikian, diharapkan website ITS-OK dapat meningkatkan kesadaran mahasiswa akan pentingnya menjaga kesehatan mental, serta memberikan akses yang lebih luas dan fleksibel terhadap layanan kesehatan mental di lingkungan kampus. Melalui fitur-fitur yang tersedia, mahasiswa dapat dengan mudah mendapatkan dukungan psikologis yang mereka butuhkan, sehingga kesejahteraan mental mereka dapat terjaga, yang pada akhirnya akan berdampak positif pada performa akademik dan kehidupan sosial mereka.
 ## Product Features
-Fitur yang ada pada ITS OK terbagi menjadi 2 yaitu untuk mahasiswa (pelanggan) dan psikolog. Fitur yang ada sebagai berikut: 
+Fitur yang ada pada ITS OK berfokus untuk memberikan pelayanan yang terbaik untuk mahasiswa (pelanggan). Fitur yang ada pada aplikasi kami adalah sebagai berikut: 
 - **Mahasiswa**
     - Konsultasi Offline: Mahasiswa bisa melakukan registrasi untuk konsultasi tatap muka di SHCC ITS dengan mengisi formulir dan memilih jadwal yang tersedia.
     - Lagu Tenang: Kumpulan lagu yang bisa diakses oleh mahasiswa untuk membantu ketenangan mental.
-- **Psikolog**
-    - Melayani Konsultasi Offline: Psikolog menerima mahasiswa untuk sesi tatap muka di SHCC ITS.
+
 ## Tools & Software yang digunakan
 Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memiliki fungsi beragam, mulai dari version control, CI/CD, pengembangan frontend dan backend, hingga pemindaian keamanan serta pemantauan aplikasi. Rincian lengkap mengenai tools dan framework yang digunakan dapat dilihat pada daftar berikut:
 - Version Control

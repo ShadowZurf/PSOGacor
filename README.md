@@ -66,19 +66,19 @@ ESLint adalah alat statis untuk menganalisis kode JavaScript dan TypeScript guna
 
 Jest adalah framework pengujian JavaScript yang digunakan untuk melakukan unit testing secara efisien dan cepat. Dalam proyek ini, Jest dimanfaatkan untuk memastikan bahwa setiap fungsi atau komponen aplikasi berjalan sesuai dengan yang diharapkan melalui serangkaian pengujian terautomasi. Jest mendukung fitur seperti mocking, snapshot testing, dan coverage report, yang membantu dalam mendeteksi bug lebih awal serta menjaga kestabilan aplikasi selama proses pengembangan. Integrasi Jest juga berjalan mulus dengan framework seperti Next.js, sehingga cocok digunakan dalam alur pengujian proyek ini.
 ### SonarCloud
-![Contoh Foto](imagesreadme/sonarcloud.png)
+<p align="center"><img src="imagesreadme/sonarcloud.png"  width="400"/></p>
 
 SonarCloud adalah layanan berbasis cloud yang digunakan untuk menganalisis kualitas kode secara otomatis dengan fokus pada aspek seperti bugs, code smells, vulnerabilities, dan code coverage. Dalam proyek ini, SonarCloud digunakan setelah proses testing dengan Jest untuk melakukan pemeriksaan lanjutan terhadap kualitas dan keamanan kode secara menyeluruh. Integrasinya dengan GitHub dan GitHub Actions memungkinkan analisis berjalan otomatis setiap kali ada perubahan kode, sehingga membantu tim dalam menjaga standar kualitas, mengurangi risiko kesalahan di production, serta memantau performa kode secara berkelanjutan.
 ### Docker
-![Contoh Foto](imagesreadme/docker.png)
+<p align="center"><img src="imagesreadme/docker.png"  width="350"/></p>
 
 Docker adalah platform open-source yang digunakan untuk membuat, menjalankan, dan mengelola aplikasi dalam wadah (container) yang ringan dan terisolasi. Dalam konteks pengembangan perangkat lunak, Docker memungkinkan pengembang untuk membungkus aplikasi beserta semua dependensi dan konfigurasi yang dibutuhkan ke dalam satu container, sehingga aplikasi dapat dijalankan dengan konsisten di berbagai lingkungan. Dengan menggunakan Docker, proses deployment menjadi lebih cepat, reproducible, dan mudah diintegrasikan ke dalam pipeline CI/CD, termasuk dalam proyek ini untuk memastikan bahwa aplikasi dapat dijalankan secara stabil dan efisien di berbagai tahap pengembangan maupun produksi.
 ### Firestore
-![Contoh Foto](imagesreadme/firestore.png)
+<p align="center"><img src="imagesreadme/firestore.png"  width="350"/></p>
 
 Firestore adalah layanan basis data NoSQL berbasis cloud yang dikembangkan oleh Google sebagai bagian dari platform Firebase. Firestore dirancang untuk menyimpan dan menyinkronkan data secara real-time, serta mendukung struktur data berbasis dokumen dan koleksi yang fleksibel. Dalam proyek ini, Firestore digunakan sebagai backend untuk menyimpan data aplikasi, seperti informasi pengguna, catatan, atau konfigurasi sistem, dengan keunggulan akses data yang cepat, skalabilitas tinggi, dan kemampuan integrasi langsung dengan layanan Google lainnya. Selain itu, Firestore juga mendukung operasi offline dan real-time update, sehingga sangat cocok untuk aplikasi modern berbasis web maupun mobile.
 ### Google Cloud Platform (GCP)
-![Contoh Foto](imagesreadme/gcp.png)
+<p align="center"><img src="imagesreadme/gcp.png"  width="350"/></p>
 
 Google Cloud Platform (GCP) adalah layanan cloud dari Google yang menyediakan infrastruktur dan alat untuk menyimpan, mengelola, serta menjalankan aplikasi secara online. Dalam konteks deployment, GCP memungkinkan pengembang untuk menyebarkan aplikasi ke cloud melalui berbagai layanan seperti App Engine (platform-as-a-service untuk aplikasi web), Cloud Run (untuk menjalankan container secara serverless), atau Compute Engine (virtual machine dengan kontrol penuh). Proses deployment di GCP umumnya melibatkan pembuatan project, konfigurasi file deployment (seperti app.yaml untuk App Engine), lalu menggunakan perintah seperti gcloud app deploy untuk mengunggah dan menjalankan aplikasi secara otomatis di lingkungan production.
 

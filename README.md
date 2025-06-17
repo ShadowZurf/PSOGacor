@@ -250,18 +250,24 @@ Tahap akhir dari pipeline CD adalah mendeploy image yang sudah dibuild ke Cloud 
 - Arya Putra Tsabitah Firjatulloh (5026221172)
 
 ## How to Run the code
-- Open your terminal and navigates to your projects folder, then run the following command
+- Open your terminal and navigates to your projects folder, then run the following command. Buka terminal dan masuk ke dalam folder proyek mu, lalu jalankan command di bawah
 ```bash
 git clone https://github.com/ShadowZurf/PSOGacor.git
 ```
-- Go to your project directory and make sure the files are there
-- Open your terminal again and install our depedencies, run this following command
+- Go to your project directory and make sure the files are there. Masuk ke directory dari project yang tadi kamu buat dan pastikan ada file-file nya disana.
+- Open your terminal again and install our depedencies, run this following command. Buka terminalmu (command prompt) dan install depedencies kami dengan menjalankan command di bawah.
 ```bash
 npm install
 ```
-- Configure the environment variables. In this project, we use firebase and firestore.
-- Open your terminal again and run locally the code with the following command
+- Configure the environment variables. In this project, we use firebase and firestore. Perhatikan environment variables project ini, dalam projek ini kami menggunakan firebase dan firestore.
+- Open your terminal again and run locally the code with the following command. Buka terminal kembali dan run code pada local dengan command di bawah ini.
 ```bash
 npm run dev
 ```
+
+## Error and Troubleshoot
+
+-- Permasalahan 1: Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
+
+-- Solusi 1: Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
 

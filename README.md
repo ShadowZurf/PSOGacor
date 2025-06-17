@@ -112,8 +112,6 @@ docker info
 ```
 Pastikan tidak ada error dan status menampilkan **Docker Engine is running**.
 
----
-
 3. Siapkan File Proyek dan Buat `Dockerfile`
 Contoh struktur sederhana:
 ```
@@ -141,16 +139,12 @@ ENV PORT=8080
 CMD ["npx", "next", "start", "-p", "8080"]
 ```
 
----
-
 4. Build Image dari Dockerfile
 Jalankan perintah berikut untuk membangun image:
 ```bash
 docker build -t psogacor .
 ```
 > `psogacor` adalah nama image, bisa diganti sesuai kebutuhanmu.
-
----
 
 5. Jalankan Container dari Image
 Setelah proses build berhasil, jalankan container dengan:
@@ -162,8 +156,6 @@ Akses aplikasi melalui browser:
 ```
 http://localhost:8080
 ```
-
----
 
 ### GCP
 1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.

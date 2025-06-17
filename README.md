@@ -267,21 +267,24 @@ npm run dev
 
 ## Error, Troubleshoot, and Improvement
 
--- Permasalahan 1: Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
+- **Permasalahan 1:** Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
 
--- Solusi 1: Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.
-
-
--- Permasalahan 2: Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
-
--- Solusi 2: Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
+- **Solusi 1:** Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.
 
 
--- Permasalahan 3: Konfigurasi Jest awalnya bermasalah karena versi dependency tidak cocok dan beberapa package tidak kompatibel, sehingga testing gagal berjalan. Kami juga sempat kesulitan membuat coverage yang valid dan file test bisa dieksekusi dengan benar.
 
--- Solusi 3: Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.
+- **Permasalahan 2:** Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
+
+- **Solusi 2:** Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
 
 
--- Permasalahan 4: Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.
 
--- Solusi 4: Kami memperbaiki konfigurasi file sonar-project.properties dan menyesuaikan output coverage dari Jest agar kompatibel dengan SonarCloud, contohnya adalah mengatur peraturan coverage dan ignorenya untuk sonar ini. Sekarang, SonarCloud dapat mendeteksi code coverage dan hasil linting secara otomatis setiap pipeline berjalan.
+- **Permasalahan 3:** Konfigurasi Jest awalnya bermasalah karena versi dependency tidak cocok dan beberapa package tidak kompatibel, sehingga testing gagal berjalan. Kami juga sempat kesulitan membuat coverage yang valid dan file test bisa dieksekusi dengan benar.
+
+- **Solusi 3:** Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.
+
+
+
+- **Permasalahan 4:** Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.
+
+- **Solusi 4:** Kami memperbaiki konfigurasi file sonar-project.properties dan menyesuaikan output coverage dari Jest agar kompatibel dengan SonarCloud, contohnya adalah mengatur peraturan coverage dan ignorenya untuk sonar ini. Sekarang, SonarCloud dapat mendeteksi code coverage dan hasil linting secara otomatis setiap pipeline berjalan.

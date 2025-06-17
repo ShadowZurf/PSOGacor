@@ -139,25 +139,45 @@ Pada tahap ini, workflow menjalankan linting untuk memastikan kode mengikuti sta
       - name: Run Tests with Coverage
         run: npm run test -- --coverage
 </pre>
-Tahap berikutnya adalah menjalankan unit test menggunakan Jest untuk memverifikasi fungsi-fungsi aplikasi bekerja sesuai ekspektasi. Kode ini akan mengeksekusi seluruh test unit yang sudah dibuat pada aplikasi, dan coverage akan memberikan laporan insight seberapa banyak kode yang telah diuji. Juga, Pipeline akan gagal jika terdapat test yang tidak lolos.
+Rahap ini adalah menjalankan unit test menggunakan Jest untuk memverifikasi fungsi-fungsi aplikasi bekerja sesuai ekspektasi. Kode ini akan mengeksekusi seluruh test unit yang sudah dibuat pada aplikasi, dan coverage akan memberikan laporan insight seberapa banyak kode yang telah diuji. Juga, Pipeline akan gagal jika terdapat test yang tidak lolos.
 
-6. artifact
+6. Upload artifact coverage
 <pre>
-      - name: 
-        run:
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
 </pre>
-Tahap berikutnya adalah 
+Pada tahap ini, setelah tes dilakukan, hasil laporan coverage akan diupload dan dibungkus dalam artifact dengan nama coverage. Hal ini dilakukan sehingga bisa di download manual dan diakses melalui github actions, jadi bisa dilakukan checking langsung di folder laptop. Selain itu, file ini diupload agar bisa digunakan pada job selanjutnya yaitu job sonarcloud.
 
 7. Tahap Build Project
 <pre>
       - name: Build Project
         run: npm run build
 </pre>
-Setelah tahap lint, test, dan analisis, workflow dapat melakukan build aplikasi (misal dengan Next.js). Build hanya dijalankan jika lint dan test lolos, memastikan aplikasi siap untuk dideploy.
+Setelah tahap lint, test, dan analisis, workflow dapat melakukan build aplikasi. Build ini digunakan untuk mengubah kode mentah menjadi kode yang siap dijalankan di server atau browser. Hal ini dilakukan agar import/export modern JS/TS/lainnya diubah menjadi bentuk yang kompatible dengan semua environment. Build hanya dijalankan jika lint dan test lolos.
 
-8. Tahap analisis code dengan SonarCloud
+8. Tahap konfigurasi dengan SonarCloud
 <pre>
-      - name: SonarCloud Scan
+sonarcloud-scan:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: coverage
+          path: coverage/
+</pre>
+Tahap ini akan membuat job baru yang akan dijalankan setelah job lint-and-test berhasil dijalankan dengan nama job sonarcloud-scan. Disini menyesuaikan OS juga seperti di awal dan mengambil kode dengan checkout repository. Setelah itu, sonarcloud akan mengambil artifact dari coverage yang sebelumnya sudah diupload.
+
+9. Tahap analisis code dengan SonarCloud
+<pre>
+- name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
         with:
           projectBaseDir: .
@@ -165,7 +185,6 @@ Setelah tahap lint, test, dan analisis, workflow dapat melakukan build aplikasi 
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 </pre>
 Selanjutnya workflow akan menjalankan analisis kualitas kode menggunakan SonarCloud. SonarCloud akan melakukan analisis terhadap potensi bug, code smell, serta kualitas testing secara otomatis. Kode ini akan mengupload hasil analisis ke dashboard SonarCloud agar dapat dipantau oleh developer/maintainer. Pada tahap ini juga dibutuhkan token rahasia (SONAR_TOKEN) yang sudah dikonfigurasikan di repo.
-
 
 ### Continuous Deployment
 1. Konfigurasi GitHub Actions Workflow untuk CD

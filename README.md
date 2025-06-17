@@ -74,8 +74,9 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 1. Untuk menggunakan GitHub Actions, ikuti panduan pada tautan berikut: https://docs.github.com/en/actions/writing-workflows/quickstart.
 2. Buat folder .github/workflows di dalam repository sebagai tempat menyimpan file konfigurasi workflow.
 3. Buat file YAML yang berisi konfigurasi pipeline CI/CD sesuai kebutuhan proyek.
-4. Dalam proyek ini kami baru membuat 1 file YAML, yaitu ci.yml.
+4. Dalam proyek ini kami membuat 2 file YAML, yaitu ci.yml dan cd.yml
 5. Pipeline ci.yml dijalankan secara otomatis ketika terdapat pull request dari branch fitur ke branch main, dan akan menjalankan proses pengecekan ESLint, Jest, dan SonarCloud.
+6. Pipeline cd.yml dijalankan secara otomatis ketika ci berhasil dijalankan. Disini akan dilakukan keseluruhan konfigurasi GCP dan Docker.
 ### Next.js
 1. Pertama install Node.js di VSCode. Cek versi di terminal dengan node -v dan npm -v.
 2. Kemudian buat project baru dengan membuka terminal di VSCode, lalu jalankan npx create-next-app@latest nama-proyek.
@@ -89,14 +90,25 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Kemudian push ke GitHub dengan:
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
+### Firebase
+
+
+### Firestore
+
 
 ### Docker
 
 
 ### GCP
-
+1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.
+2. Setelah itu, masuk ke halaman cloud run dan artifact registery untuk meng enable kedua halaman itu. Cloud run digunakan untuk mendeploy dan mengatur mulai dari server yang akan digunakan, port, memory, security, dan lainnya. Sementara, untuk artifact registery digunakan untuk mempush docker image local yang sebelumnya dibuat, ke docker google cloud yang berhubungan dengan cloud run itu juga.
+3. Selanjutnya adalah konfigurasi pada halaman IAM & Admin. Disini dilakukan untuk menambah service account utama yang dapat digunakan agar pipeline dapat melakukan keseluruhan proses pada GCP melalui credentials (pada CD). Hal ini sangat diperlukan karena kami melakukan otomasi proses CI/CD.
+4. Setelah melakukan konfigurasi ketiga hal tersebut, pastikan CD terautentikasi dengan baik oleh konfigurasi yang ada, mulai dari nama, credentials, token, id, dan lainnya. Hal ini harus dipastikan benar supaya GCP berhasil mendeploy aplikasi kita ke server.    
 ### Monitoring
-
+1. Setelah pipeline diatur dengan baik dan konfigurasi server diatur dengan baik sehingga aplikasi dapat dijalankan di server. Monitoring dapat dilakukan dengan beberapa tools berbeda, namun pada kasus ini kami menggunakan monitoring GCP.
+2. Monitoring yang dilakukan yang pertama dengan mengatur dashboard agar bisa langsung terlihat monitoring sesuai pilihan contohnya seperti request latency by service atau request count by service.
+3. Setelah dashboard diatur, disini kita dapat mengatur metric apa saja yang mau kita explore, contohnya adalah log explorer. Ini digunakan agar kita bisa memonitoring log dari keseluruhan resource project yang ada di google cloud. Disini kita bisa analisa performa/traffic.
+4. Setelah mengatur apa-apa saja yang ingin di monitoring, disini dilakukan konfigurasi untuk alerting, agar nantinya kita bisa langsung mengetahui jika ada masalah dari keseluruhan proses project sesuai dengan monitoringnya tadi. Contohnya, kami mengatur agar ketika request count tidak sesuai threshold, maka akan langsung diinfokan melalui gmail.
 
 
 ## Penjelasan Pipeline

@@ -157,6 +157,7 @@ describe("Daftar Konsultasi Offline", () => {
   });
 
   it("shows alert if Firestore fails to addDoc", async () => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
     (firestore.getDocs as jest.Mock).mockResolvedValue({
       forEach: function() {},
     });

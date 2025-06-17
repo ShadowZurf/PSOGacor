@@ -33,6 +33,7 @@ describe('DetailPesananOfflineView', () => {
   });
 
   it('should show not found if no data', async () => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
     (getDoc as jest.Mock).mockResolvedValueOnce({
       exists: () => false,
     });

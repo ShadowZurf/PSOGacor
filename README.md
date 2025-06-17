@@ -97,7 +97,73 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 
 
 ### Docker
+1. Download dan Install Docker Desktop
+- Kunjungi: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+- Pilih versi sesuai arsitektur perangkat:
+  - **Windows/Mac ARM** (contoh: Mac M1/M2, Surface Pro X)
+  - **Windows/Mac AMD/Intel** (umumnya laptop/PC biasa)
+- Ikuti proses instalasi dan **aktifkan WSL2** saat diminta.
 
+2. Cek apakah Docker sudah terinstal dan berjalan
+Buka terminal atau CMD dan jalankan perintah berikut:
+```bash
+docker -v
+docker info
+```
+Pastikan tidak ada error dan status menampilkan **Docker Engine is running**.
+
+---
+
+3. Siapkan File Proyek dan Buat `Dockerfile`
+Contoh struktur sederhana:
+```
+├── Dockerfile
+├── package.json
+├── ...
+```
+
+Contoh isi `Dockerfile` (untuk Next.js di port 8080):
+```dockerfile
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY package.json package-lock.json* ./
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 8080
+ENV PORT=8080
+
+CMD ["npx", "next", "start", "-p", "8080"]
+```
+
+---
+
+4. Build Image dari Dockerfile
+Jalankan perintah berikut untuk membangun image:
+```bash
+docker build -t psogacor .
+```
+> `psogacor` adalah nama image, bisa diganti sesuai kebutuhanmu.
+
+---
+
+5. Jalankan Container dari Image
+Setelah proses build berhasil, jalankan container dengan:
+```bash
+docker run -p 8080:8080 psogacor
+```
+
+Akses aplikasi melalui browser:
+```
+http://localhost:8080
+```
+
+---
 
 ### GCP
 1. Persiapkan akun GCP dengan saldonya, karena untuk deploy kesebuah server, biasanya butuh saldo. Disini kami menggunakan free saldo sebesar $300 dengan durasi 3 bulan.

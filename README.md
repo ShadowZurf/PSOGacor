@@ -98,11 +98,11 @@ name: CI
 
 on:
   push:
-    branches: [master, staging, sonar, 'feature/*', testes]
+    branches: ['*']
   pull_request:
-    branches: [master, staging]
+    branches: [master]
 </pre>
-Kode di atas menjelaskan konfigurasi workflow pipeline yang diberi nama CI dan akan secara otomatis berjalan apabila terdapat pull request dari branch fitur ke master dan staging dan ketika melakukan push pada branch master, staging, dan sonar. Tujuan branch-branch ini diantaranya itu agar memisahkan proses staging dan production pada aplikasi kami.
+Kode di atas menjelaskan konfigurasi workflow pipeline yang diberi nama CI dan akan secara otomatis berjalan apabila terdapat** pull request** dari branch fitur ke master dan ketika melakukan **push** pada seluruh branch. Tujuan kami melakukan hal itu karena agar CI terus di cek, ketika tim melakukan push pada branch dan ketika tim akan melakukan PR ke master. Sehingga nantinya kode akan bersih ketika sudah memasuki master.
 
 2. Setup environment, Checkout repository, dan Setup node.js
 <pre>
@@ -118,13 +118,15 @@ jobs:
         with:
           node-version: 18
 </pre>
-Kode di atas memastikan semua proses pada job dijalankan dalam virtual machines ubuntu terbaru yang disediakan oleh github actions. Hal ini akan menjamin environment yang standar dan konsisten. Setelah itu kode di atas juga memastikan step checkout atau clone source code dari repository github ke vm ini. Setelah itu, step nya akan melakukan instalasi dan aktivasi node js versi 18 pada di environment tadi. Hal ini memastikan versi node.js yang digunakan sesuai dengan kebutuhan project.
+Kode di atas memastikan semua proses pada job dijalankan dalam virtual machines (OS) ubuntu terbaru yang disediakan oleh github actions. Hal ini akan menjamin environment yang standar dan konsisten. Setelah itu kode di atas juga memastikan step checkout atau clone source code dari repository github ke vm (environment runner) ini. Setelah itu, step nya akan melakukan instalasi dan aktivasi node js versi 18 pada environment tadi. Hal ini memastikan versi node.js yang digunakan sesuai dengan kebutuhan project dan agar perintah npm serta proyek berbasis node bisa dijalankan.
 
 3. Install Depedencies
 <pre>
       - name: Install dependencies
         run: npm install
 </pre>
+Pada tahap ini, kode memastikan instalasi seluruh depedency/project depedencies yang dibutuhkan proyek. Hal ini dilakukan untuk menghindari perbedaan version dan perbedaan environment atau kekurangan depedency.
+
 4. Tahap Linting (ESLint Check)
 <pre>
       - name: Run ESLint
@@ -137,9 +139,23 @@ Pada tahap ini, workflow menjalankan linting untuk memastikan kode mengikuti sta
       - name: Run Tests with Coverage
         run: npm run test -- --coverage
 </pre>
-Tahap berikutnya adalah menjalankan unit test menggunakan Jest untuk memverifikasi fungsi-fungsi aplikasi bekerja sesuai ekspektasi. Kode ini akan mengeksekusi seluruh test unit yang sudah dibuat pada aplikasi, dan coverage akan memberikan insight seberapa banyak kode yang telah diuji. Juga, Pipeline akan gagal jika terdapat test yang tidak lolos.
+Tahap berikutnya adalah menjalankan unit test menggunakan Jest untuk memverifikasi fungsi-fungsi aplikasi bekerja sesuai ekspektasi. Kode ini akan mengeksekusi seluruh test unit yang sudah dibuat pada aplikasi, dan coverage akan memberikan laporan insight seberapa banyak kode yang telah diuji. Juga, Pipeline akan gagal jika terdapat test yang tidak lolos.
 
-6. Tahap analisis code dengan SonarCloud
+6. artifact
+<pre>
+      - name: 
+        run:
+</pre>
+Tahap berikutnya adalah 
+
+7. Tahap Build Project
+<pre>
+      - name: Build Project
+        run: npm run build
+</pre>
+Setelah tahap lint, test, dan analisis, workflow dapat melakukan build aplikasi (misal dengan Next.js). Build hanya dijalankan jika lint dan test lolos, memastikan aplikasi siap untuk dideploy.
+
+8. Tahap analisis code dengan SonarCloud
 <pre>
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
@@ -150,12 +166,7 @@ Tahap berikutnya adalah menjalankan unit test menggunakan Jest untuk memverifika
 </pre>
 Selanjutnya workflow akan menjalankan analisis kualitas kode menggunakan SonarCloud. SonarCloud akan melakukan analisis terhadap potensi bug, code smell, serta kualitas testing secara otomatis. Kode ini akan mengupload hasil analisis ke dashboard SonarCloud agar dapat dipantau oleh developer/maintainer. Pada tahap ini juga dibutuhkan token rahasia (SONAR_TOKEN) yang sudah dikonfigurasikan di repo.
 
-7. Tahap Build Project
-<pre>
-      - name: Build Project
-        run: npm run build
-</pre>
-Setelah tahap lint, test, dan analisis, workflow dapat melakukan build aplikasi (misal dengan Next.js). Build hanya dijalankan jika lint dan test lolos, memastikan aplikasi siap untuk dideploy.
+
 ### Continuous Deployment
 1. Konfigurasi GitHub Actions Workflow untuk CD
 <pre>
@@ -269,20 +280,17 @@ npm run dev
 
 - **Permasalahan 1:** Awalnya, kami mendapati masalah (error dan warning) pada kode kami karena beberapa file kami masih banyak mengandung kode yang tidak konsisten dan rusak, yang mana hal itu diberikan oleh ESLint. Contohnya adalah seperti penggunaan tipe any, require import, dan komponen tanpa display name.
 
-- **Solusi 1:** Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.<br>
-
+- **Solusi 1:** Kami menerapkan dan memperbaiki kode sesuai dengan feedback ESLint, setelah itu linting sudah bersih tanpa error dan warning. Perbaikan ini membuat kode jadi lebih konsisten, rapi, dan mengikuti best practice.
 
 
 - **Permasalahan 2:** Kami mendapat kendala dalam memahami bagaimana workflows ci/cd bekerja, khususnya terkait environment build and test. Beberapa script yang berjalan lancar pada local, ternyata error saat dijalankan di pipeline (misal: depedency error, environment mismatch).
 
-- **Solusi 2:** Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.<br>
-
+- **Solusi 2:** Kami membaca dokumentasi dan mencoba beberapa konfigurasi environment di workflow file. Melalui beberapa kali percobaan (trial and error), environment pipeline akhirnya berhasil dibuat stabil dan proses testing bisa dijalankan otomatis di setiap push dan PR.
 
 
 - **Permasalahan 3:** Konfigurasi Jest awalnya bermasalah karena versi dependency tidak cocok dan beberapa package tidak kompatibel, sehingga testing gagal berjalan. Kami juga sempat kesulitan membuat coverage yang valid dan file test bisa dieksekusi dengan benar.
 
-- **Solusi 3:** Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.<br>
-
+- **Solusi 3:** Kami melakukan update dan penyesuaian dependency di package.json serta memperbaiki konfigurasi coverage pada jest.config.js. Kami juga membuat keseluruhan file test (pada folder __tests__) yang kami butuhkan agar semua halaman kami dites. Setelah penyesuaian, proses test dan coverage berjalan lancar.
 
 
 - **Permasalahan 4:** Hasil coverage dari Jest serta analisis linting dari ESLint awalnya tidak terbaca oleh SonarCloud (Terlihat dari jumlah coverage). File coverage (lcov.info) belum dikonfigurasi agar otomatis ter-upload ke SonarCloud.

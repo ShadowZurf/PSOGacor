@@ -90,11 +90,37 @@ Bagian ini adalah tahapan-tahapan dalam menyiapkan setiap tools yang digunakan d
 7. Kemudian push ke GitHub dengan:
     - git remote add origin https://github.com/username/repo.git
     - git push -u origin main
+   
 ### Firebase
-
+1. Membuka https://console.firebase.google.com untuk membuat project baru sebagai backend dari aplikasi.
+2. Login menggunakan akun Google yang dimiliki, lalu klik tombol “Add project” dan ikuti panduan pembuatan project seperti pengisian nama dan pengaturan Google Analytics.
+3. Setelah project berhasil dibuat, klik ikon Web (</>) untuk menambahkan aplikasi berbasis web agar Firebase dapat terhubung ke project frontend.
+4. Salin konfigurasi kode JavaScript yang ditampilkan oleh Firebase. Konfigurasi ini berisi parameter seperti apiKey, authDomain, dan projectId.
+5. Buat folder lib/ di root direktori proyek jika belum ada, lalu buat file firebase.ts di dalamnya.
+6. Tempelkan konfigurasi Firebase ke dalam file firebase.ts, lalu inisialisasikan Firebase App dan Firestore menggunakan SDK Firebase.
+7. Jalankan perintah berikut di terminal untuk menginstal SDK Firebase ke dalam project:
+```
+npm install firebase
+```
 
 ### Firestore
-
+1. Buka kembali Firebase Console, lalu pilih menu “Firestore Database” dari sidebar kiri.
+2. Klik tombol “Create database”, pilih mode production atau test, lalu pilih lokasi server sesuai kebutuhan (misalnya Asia Tenggara/Singapura).
+3. Setelah Firestore aktif, database siap digunakan untuk menyimpan dan membaca data dari aplikasi.
+4. Untuk menggunakan Firestore di dalam aplikasi, impor db dari file firebase.ts.
+5. Gunakan fungsi-fungsi dari firebase/firestore seperti collection, addDoc, getDocs, query, dan Timestamp untuk operasi CRUD data.
+6. Struktur import pada file kode biasanya ditulis seperti berikut (sesuaikan dengan kode masing-masing):
+```
+import { db } from "@/lib/firebase";
+import {
+  collection,
+  addDoc,
+  Timestamp,
+  query,
+  where,
+  getDocs,
+} from "firebase/firestore";
+```
 
 ### Docker
 1. Download dan Install Docker Desktop

@@ -36,7 +36,7 @@ Dalam proyek DevOps ini, kami memanfaatkan beragam tools dan framework yang memi
     - Firestore
     - Google Cloud Platform
 ### GitHub
-<p align="center"><img src="imagesreadme/github.jpeg" width="600"/></p>
+<p align="center"><img src="imagesreadme/github.jpeg" width="200"/></p>
 
 GitHub merupakan platform berbasis web yang memanfaatkan Git sebagai sistem version control untuk mengelola source code serta memantau setiap perubahan yang terjadi dalam proses pengembangan perangkat lunak. Dalam proyek ini, kami juga menggunakan fitur GitHub Project untuk membantu manajemen tugas, dengan memanfaatkan template yang telah disediakan. Pengelolaan proyek dilakukan melalui metode kanban board, yang memberikan visualisasi progres tugas secara jelas dan terstruktur.
 ### GitHub Actions

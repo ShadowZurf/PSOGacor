@@ -62,7 +62,7 @@ Next.js adalah framework berbasis React yang dikembangkan oleh Vercel, dirancang
 
 ESLint adalah alat statis untuk menganalisis kode JavaScript dan TypeScript guna menemukan serta memperbaiki masalah yang berkaitan dengan kualitas dan konsistensi penulisan kode. Dalam proyek ini, digunakan NextLint, yaitu konfigurasi ESLint yang telah disesuaikan secara default oleh Next.js. NextLint membantu memastikan bahwa kode yang ditulis mengikuti standar dan praktik terbaik yang direkomendasikan oleh Next.js, serta memudahkan pengembang dalam menjaga keteraturan struktur kode dan mencegah potensi bug sejak dini.
 ### Jest
-<p align="center"><img src="imagesreadme/jest.png" width="250"/></p>
+<p align="center"><img src="imagesreadme/jest.png" width="200"/></p>
 
 Jest adalah framework pengujian JavaScript yang digunakan untuk melakukan unit testing secara efisien dan cepat. Dalam proyek ini, Jest dimanfaatkan untuk memastikan bahwa setiap fungsi atau komponen aplikasi berjalan sesuai dengan yang diharapkan melalui serangkaian pengujian terautomasi. Jest mendukung fitur seperti mocking, snapshot testing, dan coverage report, yang membantu dalam mendeteksi bug lebih awal serta menjaga kestabilan aplikasi selama proses pengembangan. Integrasi Jest juga berjalan mulus dengan framework seperti Next.js, sehingga cocok digunakan dalam alur pengujian proyek ini.
 ### SonarCloud
